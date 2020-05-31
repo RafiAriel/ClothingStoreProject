@@ -8,26 +8,26 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 
-public class Store {
-        private static Store db;
-        private static Object LockObject = new Object();
-        private Store()
-        {
+public class Data {
+    private static Data db;
+    private static Object LockObject = new Object();
+    private Data()
+    {
 
-        }
-        //singleton design pattern
-        public static Store getInstance()
+    }
+    //singleton design pattern
+    public static Data getInstance()
+    {
+        if (db == null)
         {
-            if (db == null)
-            {
-                synchronized (LockObject) {
-                    if (db == null) {
-                        db = new Store();
-                    }
+            synchronized (LockObject) {
+                if (db == null) {
+                    db = new Data();
                 }
             }
-            return db;
         }
+        return db;
+    }
 
     public static void getClubMembers() {
         Connection connection = null;
