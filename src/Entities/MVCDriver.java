@@ -4,13 +4,19 @@ import Controller.myController;
 import Model.myModel;
 import View.myCLI;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static java.lang.System.*;
+
 public class MVCDriver {
 
     public static void main(String[] args) {
         myModel model = new myModel();
         myCLI view = new myCLI();
-
         myController co =  new myController (model , view);
+
+        }
     }
 
-}
+
