@@ -27,7 +27,6 @@ public class Data {
     }
 
 
-
     public static ArrayList<int[]> allpurchase() {
     ArrayList<int[]> allpurchase = new ArrayList<>();
     Connection connection = null;
@@ -71,7 +70,6 @@ public class Data {
     //  at row : 0, column : 0
     //   System.out.println("[id][itemid] : " + rows.get(0)[0]);
 }
-
 
     public static ArrayList<Member> getClubMembers() {
         Connection connection = null;
