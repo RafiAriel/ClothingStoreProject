@@ -31,8 +31,8 @@ public class Data {
         return db;
     }
 
-public static ArrayList<int[]> passwords() {
-    ArrayList<int[]> pass = new ArrayList<>();
+public static ArrayList<int[]> allpurchase() {
+    ArrayList<int[]> allpurchase = new ArrayList<>();
     Connection connection = null;
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -50,7 +50,7 @@ public static ArrayList<int[]> passwords() {
 
                 int id = rs.getInt("id");
                 int itemid = rs.getInt("itemid");
-                pass.add(new int[]{id, itemid});
+                allpurchase.add(new int[]{id, itemid});
             }
         }
     } catch (IllegalAccessException e) {
@@ -69,7 +69,7 @@ public static ArrayList<int[]> passwords() {
         }
 
     }
-    return pass;
+    return allpurchase;
     // print example
     //  at row : 0, column : 0
     //   System.out.println("[id][itemid] : " + rows.get(0)[0]);
