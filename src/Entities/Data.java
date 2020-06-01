@@ -118,7 +118,7 @@ public class Data {
         return ClubMembers;
     }
 
-    public static ArrayList<Item> getItem() {
+    public static ArrayList<Item> getItemdb() {
         Connection connection = null;
         ArrayList<Item> items = null;
         try {
