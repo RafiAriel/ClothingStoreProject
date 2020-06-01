@@ -1,6 +1,6 @@
 package Entities;
 
-public class Shoes extends Item{
+public class Shoe extends Item{
     private String drawstringColor;
 
     public String getDrawstringColor() {
@@ -10,7 +10,7 @@ public class Shoes extends Item{
         this.drawstringColor = drawstringColor;
     }
 
-    public Shoes(String color, String brand, String gender, double price, int size, int currentStock, int baseStock, int itemId, String drawstringColor) {
+    public Shoe(String color, String brand, String gender, double price, int size, int currentStock, int baseStock, int itemId, String drawstringColor) {
         super(color, brand, gender, price, size, currentStock, baseStock, itemId);
         this.drawstringColor = drawstringColor;
     }

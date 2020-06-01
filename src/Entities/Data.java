@@ -1,8 +1,6 @@
 package Entities;
 import java.sql.*;
-import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Data {
@@ -49,13 +47,7 @@ public class Data {
                 allpurchase.add(new int[]{id, itemid});
             }
         }
-    } catch (IllegalAccessException e) {
-        e.printStackTrace();
-    } catch (InstantiationException e) {
-        e.printStackTrace();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } catch (ClassNotFoundException e) {
+    } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
         e.printStackTrace();
     } finally {
         try {
@@ -98,13 +90,7 @@ public class Data {
                     ClubMembers.add(m);
                 }
             }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -118,11 +104,12 @@ public class Data {
         return ClubMembers;
     }
 
-    public static ArrayList<Item> getItemdb() {
+    public static ArrayList<Item> getItems() {
         Connection connection = null;
-        ArrayList<Item> items = null;
+    
+        ArrayList<Item> items = new ArrayList<>();
         try {
-            items = new ArrayList<Item>();
+
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connection = DriverManager.getConnection("jdbc:mysql://localhost/db?useSSL=false", "root", "ProjectClothingStore");
@@ -149,28 +136,22 @@ public class Data {
                     String shirtsType = rs.getString("shirtstype");
                     switch(type){
                         case "shirt":
-                            Item itemp1 = new Shirts(color, brand, gender, price, size, currentStock, baseStock, id, shirtsType);
-                            items.add(itemp1);
+                            Shirt shirts = new Shirt(color, brand, gender, price, size, currentStock, baseStock, id, shirtsType);
+                            items.add(shirts);
                             break;
                         case "pant":
-                            Item itemp2 = new Pants(color, brand, gender, price, size, currentStock, baseStock, id, pantsType);
-                            items.add(itemp2);
+                            Pant pants = new Pant(color, brand, gender, price, size, currentStock, baseStock, id, pantsType);
+                            items.add(pants);
                             break;
                         case "shoe":
-                            Item itemp3 = new Shoes(color, brand, gender, price, size, currentStock, baseStock, id, drawstringColor);
-                            items.add(itemp3);
+                            Shoe shoes = new Shoe(color, brand, gender, price, size, currentStock, baseStock, id, drawstringColor);
+                            items.add(shoes);
                             break;
                     }
 
             }
 
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IllegalAccessException | InstantiationException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
             try {

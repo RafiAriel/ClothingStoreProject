@@ -1,6 +1,6 @@
 package Entities;
 
-public class Shirts extends Item {
+public class Shirt extends Item {
     private String shirtType;
 
     public String getShirtType() {
@@ -10,7 +10,7 @@ public class Shirts extends Item {
         this.shirtType = shirtType;
     }
 
-    public Shirts(String color, String brand, String gender, double price, int size, int currentStock, int baseStock, int itemId, String shirtType) {
+    public Shirt(String color, String brand, String gender, double price, int size, int currentStock, int baseStock, int itemId, String shirtType) {
         super(color, brand, gender, price, size, currentStock, baseStock, itemId);
         this.shirtType = shirtType;
     }

@@ -1,4 +1,8 @@
 package Controller;
+import Entities.*;
+import Model.*;
+import View.*;
+
 
 import Model.myModel;
 import View.myCLI;
