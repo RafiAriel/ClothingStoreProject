@@ -10,8 +10,8 @@ public class Shoes extends Item{
         this.drawstringColor = drawstringColor;
     }
 
-    public Shoes(String itemId, String color, String type, String brand, String gender, double price, int size, int howManySold, int howManyInStock, String drawstringColor) {
-        super(itemId, color, type, brand, gender, price, size, howManySold, howManyInStock);
+    public Shoes(String color, String brand, String gender, double price, int size, int currentStock, int baseStock, int itemId, String drawstringColor) {
+        super(color, brand, gender, price, size, currentStock, baseStock, itemId);
         this.drawstringColor = drawstringColor;
     }
 }

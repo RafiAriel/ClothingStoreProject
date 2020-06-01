@@ -10,8 +10,8 @@ public class Shirts extends Item {
         this.shirtType = shirtType;
     }
 
-    public Shirts(String itemId, String color, String type, String brand, String gender, double price, int size, int howManySold, int howManyInStock, String shirtType) {
-        super(itemId, color, type, brand, gender, price, size, howManySold, howManyInStock);
+    public Shirts(String color, String brand, String gender, double price, int size, int currentStock, int baseStock, int itemId, String shirtType) {
+        super(color, brand, gender, price, size, currentStock, baseStock, itemId);
         this.shirtType = shirtType;
     }
 }

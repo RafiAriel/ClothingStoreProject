@@ -1,14 +1,14 @@
 package Entities;
 
 public abstract class Item {
-    private String itemId, color, type, brand, gender;
+    private String color, brand, gender;
     private double price;
-    private int size, howManySold, howManyInStock;
+    private int size, currentStock, baseStock, itemId;
 
-    public String getItemId() {
+    public int getItemId() {
         return itemId;
     }
-    public void setItemId(String itemId) {
+    public void setItemId(int itemId) {
         this.itemId = itemId;
     }
     public String getColor() {
@@ -16,12 +16,6 @@ public abstract class Item {
     }
     public void setColor(String color) {
         this.color = color;
-    }
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
     }
     public String getBrand() {
         return brand;
@@ -47,28 +41,33 @@ public abstract class Item {
     public void setSize(int size) {
         this.size = size;
     }
-    public int getHowManySold() {
-        return howManySold;
+    public int getCurrentStock() {
+        return currentStock;
     }
-    public void setHowManySold(int howManySold) {
-        this.howManySold = howManySold;
+    public void setCurrentStock(int currentStock) {
+        this.currentStock = currentStock;
+    }
+    public int getBaseStock() {
+        return baseStock;
+    }
+    public void setBaseStock(int baseStock) {
+        this.baseStock = baseStock;
     }
     public int getHowManyInStock() {
-        return howManyInStock;
+        return baseStock;
     }
-    public void setHowManyInStock(int howManyInStock) {
-        this.howManyInStock = howManyInStock;
+    public void setHowManyInStock(int baseStock) {
+        this.baseStock = baseStock;
     }
 
-    public Item(String itemId, String color, String type, String brand, String gender, double price, int size, int howManySold, int howManyInStock) {
-        this.itemId = itemId;
+    public Item(String color, String brand, String gender, double price, int size, int currentStock, int baseStock, int itemId) {
         this.color = color;
-        this.type = type;
         this.brand = brand;
         this.gender = gender;
         this.price = price;
         this.size = size;
-        this.howManySold = howManySold;
-        this.howManyInStock = howManyInStock;
+        this.currentStock = currentStock;
+        this.baseStock = baseStock;
+        this.itemId = itemId;
     }
 }
