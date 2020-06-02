@@ -36,5 +36,7 @@ public class Worker extends Person{
         this.jobType = jobType;
         this.password = password;
     }
+    public Worker()
+    {}
 
 }

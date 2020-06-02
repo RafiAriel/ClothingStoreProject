@@ -1,10 +1,11 @@
 package Entities;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Purchase {
     private Member clubMember;
-    private List<Item> item;
+    private ArrayList<Item> item;
     private double price;
     private int shoppingRating;
 
@@ -17,7 +18,7 @@ public class Purchase {
     public List<Item> getItem() {
         return item;
     }
-    public void setItem(List<Item> item) {
+    public void setItem(ArrayList<Item> item) {
         this.item = item;
     }
     public double getPrice() {
@@ -33,7 +34,7 @@ public class Purchase {
         this.shoppingRating = shoppingRating;
     }
 
-    public Purchase(Member clubMember, List<Item> item, double price, int shoppingRating) {
+    public Purchase(Member clubMember, ArrayList<Item> item, double price, int shoppingRating) {
         this.clubMember = clubMember;
         this.item = item;
         this.price = price;

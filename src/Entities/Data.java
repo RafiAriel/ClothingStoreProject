@@ -24,7 +24,7 @@ public class Data {
         return db;
     }
 
-
+/*
     public static ArrayList<Purchase> getallPurchase() {
     ArrayList<Purchase> allpurchase = new ArrayList<>();
     Connection connection = null;
@@ -63,6 +63,8 @@ public class Data {
     //   System.out.println("[id][itemid] : " + rows.get(0)[0]);
 }
 
+ */
+
     public static ArrayList<Member> getClubMembers() {
         Connection connection = null;
         ArrayList<Member> ClubMembers = null;
@@ -70,13 +72,13 @@ public class Data {
             ClubMembers = new ArrayList<Member>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
 
             // Step 3: Execute the query or update query
-            ResultSet rs = stmt.executeQuery("select name, id, dateofbirth, pointgained, lastbuy from clubmembers");
+            ResultSet rs = stmt.executeQuery("select name, id, dateofbirth, pointgained from clubmembers");
             {
 
                 // Step 4: Process the ResultSet object.
@@ -106,13 +108,12 @@ public class Data {
 
     public static ArrayList<Item> getItems() {
         Connection connection = null;
-    
         ArrayList<Item> items = new ArrayList<>();
         try {
 
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -136,15 +137,15 @@ public class Data {
                     String shirtsType = rs.getString("shirtstype");
                     switch(type){
                         case "shirt":
-                            Shirt shirts = new Shirt(color, brand, gender, price, size, currentStock, baseStock, id, shirtsType);
+                            Shirt shirts = new Shirt(color, brand,gender,type,price,size,currentStock,baseStock,id,shirtsType);
                             items.add(shirts);
                             break;
                         case "pant":
-                            Pant pants = new Pant(color, brand, gender, price, size, currentStock, baseStock, id, pantsType);
+                            Pant pants = new Pant(color, brand,gender,type,price,size,currentStock,baseStock,id,pantsType);
                             items.add(pants);
                             break;
                         case "shoe":
-                            Shoe shoes = new Shoe(color, brand, gender, price, size, currentStock, baseStock, id, drawstringColor);
+                            Shoe shoes = new Shoe(color, brand,gender,type,price,size,currentStock,baseStock,id,drawstringColor);
                             items.add(shoes);
                             break;
                     }
@@ -172,7 +173,7 @@ public class Data {
             Workers = new ArrayList<>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
