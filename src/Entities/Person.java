@@ -25,7 +25,7 @@ public class Person {
     }
 
     public Person() {
-        this.name = "no-one";
+        this.name = "valueless";
         this.dateOfBirth = "-1";
         this.id = -1;
     }
@@ -35,6 +35,4 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
         this.id = id;
     }
-    public  Person()
-    {}
 }

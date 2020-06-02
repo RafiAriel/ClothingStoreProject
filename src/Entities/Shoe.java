@@ -2,11 +2,12 @@ package Entities;
 
 public class Shoe extends Item{
     private String drawstringColor;
-public Shoe()
-{
-    super();
 
-}
+    public Shoe()
+    {
+        super();
+    }
+
     public String getDrawstringColor() {
         return drawstringColor;
     }

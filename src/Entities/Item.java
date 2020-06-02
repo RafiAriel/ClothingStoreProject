@@ -6,7 +6,15 @@ public abstract class Item {
     private int size, currentStock, baseStock, itemId;
 
     public Item() {
-
+        this.color = "valueless";
+        this.brand = "valueless";
+        this.gender = "valueless";
+        this.type = "valueless";
+        this.price = -1;
+        this.size = -1;
+        this.currentStock = -1;
+        this.baseStock = -1;
+        this.itemId = -1;
     }
 
 

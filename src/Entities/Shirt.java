@@ -14,8 +14,9 @@ public class Shirt extends Item {
         super(color, brand, gender, type, price, size, currentStock, baseStock, itemId);
         this.shirtType = shirtType;
     }
-    public Shirt()
-    {}
+    public Shirt() {
+        super();
+    }
 }
 
 

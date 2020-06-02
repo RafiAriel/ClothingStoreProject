@@ -15,5 +15,7 @@ public class Pant extends Item {
         this.pantsType = pantsType;
     }
     public Pant()
-    {}
+    {
+        super();
+    }
 }
