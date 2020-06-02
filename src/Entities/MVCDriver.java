@@ -22,9 +22,8 @@ public class MVCDriver {
         Purchase p=  model.lastPurchase(2);
 
         for(int i=0;i<p.getItem().size();i++) {
-            System.out.print('\n');
             System.out.print(p.getItem().get(i).getBrand());
-            System.out.print(' ');
+            System.out.print('\n');
             //    System.out.println(items.get(i).getPrice());
         }
        /* all = Data.getInstance().getAllPurchase();
@@ -33,8 +32,8 @@ public class MVCDriver {
             System.out.print(' ');
         //    System.out.println(items.get(i).getPrice());
         }*/
-
-    //   System.out.print( model.searchItem("Shoe", 40));
+        System.out.print('\n');
+       System.out.print( model.bestSellingProduct().getCurrentStock());
     }
 
 }

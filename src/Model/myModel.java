@@ -75,4 +75,25 @@ public class myModel {
         Purchase p = new Purchase();
         return p;
     }
+
+    public Item bestSellingProduct() {
+        int i, max = 0;
+        Item temp = new Shirt();
+        ArrayList<Item> items = new ArrayList<>();
+        try {
+            items = Data.getInstance().getItems();
+            for (i = 0; i < items.size(); i++) {
+                if (items.get(i).getBaseStock() - items.get(i).getCurrentStock() > max) {
+                    max = items.get(i).getBaseStock() - items.get(i).getCurrentStock();
+                    temp = items.get(i);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+
+
 }
