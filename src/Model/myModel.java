@@ -1,4 +1,5 @@
 package Model;
+
 import Entities.*;
 import Model.*;
 import View.*;
@@ -121,7 +122,7 @@ public class myModel {
 
     public void deleteClubMember(int id) {
         Connection connection = null;
-        String idNumber=String.valueOf(id);
+        String idNumber = String.valueOf(id);
         String DELETE_USERS_SQL = "delete from clubmembers where id = " + idNumber + ";";
         if (isExistsClubMember(id) == true) {
 
@@ -137,10 +138,28 @@ public class myModel {
                 e.printStackTrace();
             }
 
-        }
-        else {
+        } else {
             System.out.println("Unable to delete, no such user in the system");
         }
+    }
+
+    public ArrayList<Item> checkCurrentStock() {
+        int i;
+        double presentOfCurrentStock = 0.5;
+        ArrayList<Item> items = new ArrayList<Item>();
+        ArrayList<Item> itemsEndingSoon = new ArrayList<Item>();
+        try {
+            items = Data.getInstance().getItems();
+            for (i = 0; i < items.size(); i++) {
+                if (((double)items.get(i).getCurrentStock() / items.get(i).getBaseStock()) < presentOfCurrentStock) {
+                    itemsEndingSoon.add(items.get(i));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return itemsEndingSoon;
     }
 }
 
