@@ -35,4 +35,6 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
         this.id = id;
     }
+    public  Person()
+    {}
 }
