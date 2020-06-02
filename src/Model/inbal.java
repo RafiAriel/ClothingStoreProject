@@ -46,6 +46,39 @@ public class inbal {
         }
         return true;
     }
+    public void updateMembersPoints(double price, Member m)
+    {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
+            // Step 2:Create a statement using connection object
+            Statement stmt = connection.createStatement();
+
+            // Step 3: Execute the query or update query
+            ResultSet rs = stmt.executeQuery("update clubmembers set pointgained = pointgained - 0.1*"+price+" where id ="+m.getId());
+
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return Workers;
+    }
+    }
 
 }
