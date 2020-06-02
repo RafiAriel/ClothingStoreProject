@@ -57,7 +57,7 @@ public class inbal {
             Statement stmt = connection.createStatement();
             String strUpdate = "update clubmembers set pointgained = pointgained - 0.1*" + price + " where id =" + m.getId();
             // Step 3: Execute the query or update query
-            ResultSet rs = stmt.executeQuery(strUpdate);
+          //  ResultSet rs = stmt.executeQuery(strUpdate);
             int countUpdated = stmt.executeUpdate(strUpdate);
             return 1;
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {

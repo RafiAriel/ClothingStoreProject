@@ -21,14 +21,9 @@ public class MVCDriver {
         inbal inb = new inbal();
 
         Purchase p=  model.lastPurchase(2), a = new Purchase();
-
-        for(int i=0;i<p.getItem().size();i++) {
-            System.out.print(p.getItem().get(i).getBrand());
-            System.out.print('\n');
-            //    System.out.println(items.get(i).getPrice());
-        }
+        Member m = p.getClubMember();
         System.out.print('\n');
-        System.out.print( inb.isItemsInStock(a));
+        System.out.print( inb.updateMembersPoints(200,m));
     }
 
 }
