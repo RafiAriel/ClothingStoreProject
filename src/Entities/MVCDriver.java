@@ -20,7 +20,7 @@ public class MVCDriver {
         ArrayList<Item> items = new ArrayList<>();
         inbal inb = new inbal();
 
-        Purchase p=  model.lastPurchase(2);
+        Purchase p=  model.lastPurchase(2), a = new Purchase();
 
         for(int i=0;i<p.getItem().size();i++) {
             System.out.print(p.getItem().get(i).getBrand());
@@ -28,7 +28,7 @@ public class MVCDriver {
             //    System.out.println(items.get(i).getPrice());
         }
         System.out.print('\n');
-        System.out.print( inb.averageSeliingRate());
+        System.out.print( inb.isItemsInStock(a));
     }
 
 }
