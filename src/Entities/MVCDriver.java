@@ -23,7 +23,7 @@ public class MVCDriver {
         Purchase p=  model.lastPurchase(2), a = new Purchase();
         Member m = p.getClubMember();
         System.out.print('\n');
-        System.out.print( inb.updateMembersPoints(200,m));
+        //System.out.print( inb.updateMembersPoints(200,m));
     }
 
 }

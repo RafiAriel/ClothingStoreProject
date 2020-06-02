@@ -46,7 +46,7 @@ public class inbal {
         return true;
     }
 
-    public int updateMembersPoints(double price, Member m) {
+    public void updateMembersPoints(double price, Member m) {
         Connection connection = null;
         try {
 
@@ -55,11 +55,10 @@ public class inbal {
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
-            String strUpdate = "update clubmembers set pointgained = pointgained - 0.1*" + price + " where id =" + m.getId();
+            String strUpdate = "update clubmembers set pointgained = pointgained + 0.1*" + price + " where id =" + m.getId();
             // Step 3: Execute the query or update query
           //  ResultSet rs = stmt.executeQuery(strUpdate);
             int countUpdated = stmt.executeUpdate(strUpdate);
-            return 1;
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -69,7 +68,6 @@ public class inbal {
                 e.printStackTrace();
             }
         }
-        return 0;
     }
 }
 
