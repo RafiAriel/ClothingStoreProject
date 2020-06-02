@@ -145,19 +145,21 @@ public class myModel {
 
     public ArrayList<Item> checkCurrentStock() {
         int i;
+        double presentOfCurrentStock = 0.5;
         ArrayList<Item> items = new ArrayList<Item>();
+        ArrayList<Item> itemsEndingSoon = new ArrayList<Item>();
         try {
             items = Data.getInstance().getItems();
             for (i = 0; i < items.size(); i++) {
-                if (((float)items.get(i).getCurrentStock() / items.get(i).getBaseStock()) < 0.5) {
-                    System.out.println(items.get(i).getItemId());
+                if (((double)items.get(i).getCurrentStock() / items.get(i).getBaseStock()) < presentOfCurrentStock) {
+                    itemsEndingSoon.add(items.get(i));
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return items;
+        return itemsEndingSoon;
     }
 }
 
