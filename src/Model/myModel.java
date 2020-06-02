@@ -31,18 +31,18 @@ public class myModel {
         return null;
     }
 
-    public Object lastPurchase(int memId) {
+ /*   public Object lastPurchase(int memId) {
         int i;
         ArrayList<Purchase> pur = new ArrayList<>();
         try {
             pur = Data.getInstance().allPurchase();
             for (i = 0; i < pur.size(); i++)
-                if (pur.get(i).getClubMember().equals(memId) && ) {
+               // if (pur.get(i).getClubMember().equals(memId) && ) {
                     return pur.get(i);
                 }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 }
