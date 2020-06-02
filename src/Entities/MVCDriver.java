@@ -2,6 +2,7 @@ package Entities;
 
 import Controller.myController;
 import Model.myModel;
+import Model.inbal;
 import View.myCLI;
 import java.io.*;
 import java.sql.SQLException;
@@ -16,24 +17,11 @@ public class MVCDriver {
         myModel model = new myModel();
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
-        ArrayList<Item> items = new ArrayList<>();
-        //ArrayList<Purchase> all = new ArrayList<>();
 
-        Purchase p=  model.lastPurchase(2);
+        inbal inb = new inbal();
 
-        for(int i=0;i<p.getItem().size();i++) {
-            System.out.print(p.getItem().get(i).getBrand());
-            System.out.print('\n');
-            //    System.out.println(items.get(i).getPrice());
-        }
-       /* all = Data.getInstance().getAllPurchase();
-        for(int i=0;i<all.size();i++) {
-            System.out.print(all.get(i).getPrice());
-            System.out.print(' ');
-        //    System.out.println(items.get(i).getPrice());
-        }*/
-        System.out.print('\n');
-       System.out.print( model.bestSellingProduct().getCurrentStock());
+        Purchase p = model.lastPurchase(1);
+        System.out.println(inb.sellingItem(p));
     }
 
 }
