@@ -24,6 +24,12 @@ public class Person {
         this.id = id;
     }
 
+    public Person() {
+        this.name = "no-one";
+        this.dateOfBirth = "-1";
+        this.id = -1;
+    }
+
     public Person(String name, String dateOfBirth, int id) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;

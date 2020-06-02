@@ -32,6 +32,13 @@ public class Purchase {
         this.shoppingRating = shoppingRating;
     }
 
+    public Purchase() {
+        this.clubMember = new Member();
+        this.item = new ArrayList<>();
+        this.price = -1;
+        this.shoppingRating = -1;
+    }
+
     public Purchase(Member clubMember, ArrayList<Item> item, double price, int shoppingRating) {
         this.clubMember = clubMember;
         this.item = item;

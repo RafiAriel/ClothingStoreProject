@@ -16,16 +16,24 @@ public class MVCDriver {
         myModel model = new myModel();
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
-      //  ArrayList<Item> items = new ArrayList<>();
-        ArrayList<Purchase> all = new ArrayList<>();
-        all = Data.getInstance().getAllPurchase();
+        ArrayList<Item> items = new ArrayList<>();
+        //ArrayList<Purchase> all = new ArrayList<>();
+
+        Purchase p=  model.lastPurchase(1);
+
+        for(int i=0;i<p.getItem().size();i++) {
+            System.out.print(p.getItem().get(i).getBrand());
+            System.out.print(' ');
+            //    System.out.println(items.get(i).getPrice());
+        }
+       /* all = Data.getInstance().getAllPurchase();
         for(int i=0;i<all.size();i++) {
-            System.out.print(all.get(i).getClubMember().name);
+            System.out.print(all.get(i).getPrice());
             System.out.print(' ');
         //    System.out.println(items.get(i).getPrice());
-        }
+        }*/
 
-       // System.out.print( model.searchItem("Shoe", 40));
+    //   System.out.print( model.searchItem("Shoe", 40));
     }
 
 }

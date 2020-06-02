@@ -5,4 +5,7 @@ public class Manager extends Worker{
         super(name, dateOfBirth, id, hourlySalary, numHourMonth, jobType, password);
     }
 
+    public Manager() {
+        super();
+    }
 }

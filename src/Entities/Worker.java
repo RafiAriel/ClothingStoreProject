@@ -37,4 +37,7 @@ public class Worker extends Person{
         this.password = password;
     }
 
+    public Worker() {
+        super();
+    }
 }

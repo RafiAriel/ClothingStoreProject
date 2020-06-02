@@ -31,18 +31,19 @@ public class myModel {
         return null;
     }
 
- /*   public Object lastPurchase(int memId) {
+    public Purchase lastPurchase(int memId) {
         int i;
         ArrayList<Purchase> pur = new ArrayList<>();
         try {
-            pur = Data.getInstance().allPurchase();
-            for (i = 0; i < pur.size(); i++)
-               // if (pur.get(i).getClubMember().equals(memId) && ) {
+            pur = Data.getInstance().getAllPurchase();
+            for ( i = 0; i < pur.size()-1; i++)
+                if (pur.get(i).getClubMember().equals(memId) && !pur.get(i+1).equals(memId))
                     return pur.get(i);
-                }
+            if (pur.get(i).getClubMember().equals(memId))
+                return pur.get(i);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
-    }*/
+        return new Purchase();
+    }
 }

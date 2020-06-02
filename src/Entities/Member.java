@@ -10,6 +10,11 @@ public class Member extends Person{
         this.pointsGained = pointsGained;
     }
 
+    public Member() {
+        super();
+        this.pointsGained = -1;
+    }
+
     public Member(String name, String dateOfBirth, int id, int pointsGained) {
         super(name, dateOfBirth, id);
         this.pointsGained = pointsGained;

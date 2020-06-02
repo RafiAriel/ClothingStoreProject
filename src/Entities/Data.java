@@ -91,7 +91,7 @@ public class Data {
                 pointgained = rs2.getString("pointgained");
                 pointgained1 = Integer.valueOf(pointgained);
                 m1 = new Member(name,dateofbirth, id, pointgained1);
-                totalPrice = rs2.getDouble("Price");
+                totalPrice = 0;
                 rate = rate = rs2.getInt("shoppingrating");
                 date =rs2.getString("date");
             }
