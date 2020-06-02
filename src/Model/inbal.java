@@ -26,6 +26,7 @@ public class inbal {
     }
 
     public String selling() {
+
     }
 
     public boolean isItemsInStock(Purchase pur) {
@@ -69,7 +70,7 @@ public class inbal {
         }
     }
 
-    public boolean updateStockPlus(Purchase pur) {
+    public boolean updateStockMinus(Purchase pur) {
         if(!isItemsInStock(pur))
             return false;
         int i;
@@ -81,7 +82,7 @@ public class inbal {
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {
-                String strUpdate = "update items set currentStock = currentStock + where id =" + pur.getItem().get(i).getItemId();
+                String strUpdate = "update items set currentStock = currentStock -1 where itemid =" + pur.getItem().get(i).getItemId();
                 int countUpdated = stmt.executeUpdate(strUpdate);
             }
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
