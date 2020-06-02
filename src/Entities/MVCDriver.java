@@ -18,7 +18,7 @@ public class MVCDriver {
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
         ArrayList<Item> items = new ArrayList<>();
-        //ArrayList<Purchase> all = new ArrayList<>();
+        inbal inb = new inbal();
 
         Purchase p=  model.lastPurchase(2);
 
@@ -27,14 +27,8 @@ public class MVCDriver {
             System.out.print('\n');
             //    System.out.println(items.get(i).getPrice());
         }
-       /* all = Data.getInstance().getAllPurchase();
-        for(int i=0;i<all.size();i++) {
-            System.out.print(all.get(i).getPrice());
-            System.out.print(' ');
-        //    System.out.println(items.get(i).getPrice());
-        }*/
         System.out.print('\n');
-       System.out.print( model.bestSellingProduct().getCurrentStock());
+        System.out.print( inb.averageSeliingRate());
     }
 
 }
