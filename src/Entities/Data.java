@@ -65,15 +65,15 @@ public class Data {
         String shirtsType = rs2.getString("shirtstype");
         switch(type){
             case "shirt":
-                Shirt shirts = new Shirt(color, brand, gender, price, size, currentStock, baseStock, id, shirtsType);
+                Shirt shirts = new Shirt(color, brand, gender,type, price, size, currentStock, baseStock, id, shirtsType);
                 items.add(shirts);
                 break;
             case "pant":
-                Pant pants = new Pant(color, brand, gender, price, size, currentStock, baseStock, id, pantsType);
+                Pant pants = new Pant(color, brand, gender,type, price, size, currentStock, baseStock, id, pantsType);
                 items.add(pants);
                 break;
             case "shoe":
-                Shoe shoes = new Shoe(color, brand, gender, price, size, currentStock, baseStock, id, drawstringColor);
+                Shoe shoes = new Shoe(color, brand, gender,type, price, size, currentStock, baseStock, id, drawstringColor);
                 items.add(shoes);
                 break;
         }
@@ -111,15 +111,15 @@ public class Data {
             shirtsType = rs2.getString("shirtstype");
             switch(type){
                 case "shirt":
-                    Shirt shirts = new Shirt(color, brand, gender, price, size, currentStock, baseStock, id, shirtsType);
+                    Shirt shirts = new Shirt(color, brand, gender,type, price, size, currentStock, baseStock, id, shirtsType);
                     items.add(shirts);
                     break;
                 case "pant":
-                    Pant pants = new Pant(color, brand, gender, price, size, currentStock, baseStock, id, pantsType);
+                    Pant pants = new Pant(color, brand, gender,type, price, size, currentStock, baseStock, id, pantsType);
                     items.add(pants);
                     break;
                 case "shoe":
-                    Shoe shoes = new Shoe(color, brand, gender, price, size, currentStock, baseStock, id, drawstringColor);
+                    Shoe shoes = new Shoe(color, brand, gender,type, price, size, currentStock, baseStock, id, drawstringColor);
                     items.add(shoes);
                     break;
             }
@@ -213,15 +213,15 @@ public class Data {
                     String shirtsType = rs.getString("shirtstype");
                     switch(type){
                         case "shirt":
-                            Shirt shirts = new Shirt(color, brand, gender, price, size, currentStock, baseStock, id, shirtsType);
+                            Shirt shirts = new Shirt(color, brand, gender, type, price, size, currentStock, baseStock, id, shirtsType);
                             items.add(shirts);
                             break;
                         case "pant":
-                            Pant pants = new Pant(color, brand, gender, price, size, currentStock, baseStock, id, pantsType);
+                            Pant pants = new Pant(color, brand, gender,type, price, size, currentStock, baseStock, id, pantsType);
                             items.add(pants);
                             break;
                         case "shoe":
-                            Shoe shoes = new Shoe(color, brand, gender, price, size, currentStock, baseStock, id, drawstringColor);
+                            Shoe shoes = new Shoe(color, brand, gender,type, price, size, currentStock, baseStock, id, drawstringColor);
                             items.add(shoes);
                             break;
                     }

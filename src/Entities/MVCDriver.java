@@ -19,9 +19,10 @@ public class MVCDriver {
         ArrayList<Item> items = new ArrayList<>();
         //ArrayList<Purchase> all = new ArrayList<>();
 
-        Purchase p=  model.lastPurchase(1);
+        Purchase p=  model.lastPurchase(2);
 
         for(int i=0;i<p.getItem().size();i++) {
+            System.out.print('\n');
             System.out.print(p.getItem().get(i).getBrand());
             System.out.print(' ');
             //    System.out.println(items.get(i).getPrice());

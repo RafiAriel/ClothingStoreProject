@@ -58,4 +58,21 @@ public class myModel {
 
 
     }
+
+    public Purchase lastPurchase(int memId) {
+        int i;
+        ArrayList<Purchase> pur = new ArrayList<>();
+        try {
+            pur = Data.getInstance().getAllPurchase();
+            for (i = 0; i < pur.size() - 1; i++)
+                if (pur.get(i).getClubMember().getId() == memId && pur.get(i + 1).getClubMember().getId() != memId)
+                    return pur.get(i);
+            if (pur.get(i).getClubMember().getId() == memId)
+                return pur.get(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Purchase p = new Purchase();
+        return p;
+    }
 }
