@@ -16,10 +16,10 @@ public class MVCDriver {
         myModel model = new myModel();
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
-/*
-        ArrayList<Item> items = Data.getItems();
-        System.out.println(items.get(1).getBrand());
-*/
+
+      Item item = (Item) model.searchItem("shoe", 40);
+      System.out.println(item.getItemId());
+
 
 
         }

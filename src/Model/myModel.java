@@ -13,8 +13,6 @@ public class myModel {
         int i;
         ArrayList<Item> items = new ArrayList<>();
         try {
-
-
             items = Data.getInstance().getItems();
             for (i = 0; i < items.size(); i++)
                 if (items.get(i).getClass().equals(nameOfItem) && items.get(i).getSize() == size && items.get(i).getBaseStock() - items.get(i).getCurrentStock() > 0) {
