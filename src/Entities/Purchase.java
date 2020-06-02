@@ -3,15 +3,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Purchase {
-    private List<Member> clubMember;
+    private Member clubMember;
     private List<Item> item;
     private double price;
     private int shoppingRating;
 
-    public List<Member> getClubMember() {
+    public Member getClubMember() {
         return clubMember;
     }
-    public void setClubMember(List<Member> clubMember) {
+    public void setClubMember(Member clubMember) {
         this.clubMember = clubMember;
     }
     public List<Item> getItem() {
@@ -33,9 +33,9 @@ public class Purchase {
         this.shoppingRating = shoppingRating;
     }
 
-    public Purchase(List<Member> clubMember, List<Item> item, double price, int shoppingRating) {
+    public Purchase(Member clubMember, List<Item> item, double price, int shoppingRating) {
         this.clubMember = clubMember;
-        item = item;
+        this.item = item;
         this.price = price;
         this.shoppingRating = shoppingRating;
     }

@@ -16,15 +16,18 @@ public class MVCDriver {
         myModel model = new myModel();
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
-/*
-        ArrayList<Item> items = Data.getItems();
-        System.out.println(items.get(1).getBrand());
-*/
-
-
+        ArrayList<Item> items = new ArrayList<>();
+        items = Data.getInstance().getItems();
+        for(int i=0;i<items.size();i++) {
+            System.out.print(items.get(i).getColor());
+            System.out.print(' ');
+            System.out.println(items.get(i).getPrice());
         }
 
+        System.out.print( model.searchItem("Shoe", 40));
     }
+
+}
 
 
 

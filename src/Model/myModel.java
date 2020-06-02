@@ -13,23 +13,36 @@ public class myModel {
         int i;
         ArrayList<Item> items = new ArrayList<>();
         try {
-
-
             items = Data.getInstance().getItems();
             for (i = 0; i < items.size(); i++)
                 if (items.get(i).getClass().equals(nameOfItem) && items.get(i).getSize() == size && items.get(i).getBaseStock() - items.get(i).getCurrentStock() > 0) {
                     if ((nameOfItem.equals("Shirt")) || (nameOfItem.equals("shirt")))
                         return items.get(i);
                     if ((nameOfItem.equals("Pant")) || (nameOfItem.equals("pant")))
-                    return items.get(i);
+                        return items.get(i);
                     if ((nameOfItem.equals("Shoe")) || (nameOfItem.equals("shoe")))
-                    return items.get(i);
+                        return items.get(i);
 
                 }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    public Object lastPurchase(int memId) {
+        int i;
+        ArrayList<Purchase> pur = new ArrayList<>();
+        try {
+            pur = Data.getInstance().allPurchase();
+            for (i = 0; i < pur.size(); i++)
+                if (pur.get(i).getClubMember().equals(memId) && ) {
+                    return pur.get(i);
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
