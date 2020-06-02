@@ -25,18 +25,18 @@ public class Data {
     }
 
 
-    public static ArrayList<int[]> allpurchase() {
-    ArrayList<int[]> allpurchase = new ArrayList<>();
+    public static ArrayList<Purchase> getallPurchase() {
+    ArrayList<Purchase> allpurchase = new ArrayList<>();
     Connection connection = null;
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/db?useSSL=false", "root", "ProjectClothingStore");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost/db?useSSL=false", "root", "6560634i");
 
         // Step 2:Create a statement using connection object
         Statement stmt = connection.createStatement();
 
         // Step 3: Execute the query or update query
-        ResultSet rs = stmt.executeQuery("select name, id, dateofbirth, pointgained, lastbuy from clubmembers");
+        ResultSet rs = stmt.executeQuery("SELECT allpurchase.id as id, allpurchase.itemid as itemid, price, name FROM items, allpurchase, clubmembers WHERE items.itemid = allpurchase.itemid and allpurchase.id = clubmembers.id");
         {
 
             // Step 4: Process the ResultSet object.
@@ -70,7 +70,7 @@ public class Data {
             ClubMembers = new ArrayList<Member>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -112,7 +112,7 @@ public class Data {
 
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -163,6 +163,55 @@ public class Data {
         }
 
         return items;
+    }
+
+    public static ArrayList<Worker> getWorkers() {
+        Connection connection = null;
+        ArrayList<Worker> Workers = null;
+        try {
+            Workers = new ArrayList<>();
+
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+
+            // Step 2:Create a statement using connection object
+            Statement stmt = connection.createStatement();
+
+            // Step 3: Execute the query or update query
+            ResultSet rs = stmt.executeQuery("select * from workers");
+            {
+
+                // Step 4: Process the ResultSet object.
+                while (rs.next()) {
+                    String name = rs.getString("name");
+                    int id = rs.getInt("id");
+                    String dateofbirth = rs.getString("dateofbirth");
+                    double hourlysalary = rs.getDouble("hourlysalary");
+                    double numHourMonth = rs.getDouble("numHourMonth");
+                    String jobType = rs.getString("jobType");
+                    String password = rs.getString("password");
+                    Worker w = new Worker(name, dateofbirth, id ,hourlysalary, numHourMonth, jobType, password);
+                    Workers.add(w);
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return Workers;
     }
 }
 
