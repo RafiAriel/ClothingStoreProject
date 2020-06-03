@@ -3,7 +3,9 @@ import Entities.*;
 import Model.*;
 import View.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class inbal {
     public inbal() {
@@ -31,6 +33,7 @@ public class inbal {
             return "Purchase faild!";
         updateMembersPoints(pur.getPrice(), pur.getClubMember());
         int i;
+        String strDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         Connection connection = null;
         try {
 
@@ -39,7 +42,7 @@ public class inbal {
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {
-                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItem().get(i).getItemId()+",01/01/2001,"+pur.getShoppingRating()+")";
+                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItem().get(i).getItemId()+",\""+strDate+"\","+pur.getShoppingRating()+")";
                 int countUpdated = stmt.executeUpdate(strInsert);
             }
 
@@ -65,7 +68,7 @@ public class inbal {
                 for (j = 0; j < items.size(); j++) {
                     if (pur.getItem().get(i).getItemId() == items.get(j).getItemId())
                         if (items.get(j).getCurrentStock() <= 0) {
-                            System.out.println("item number:"+pur.getItem().get(i).getItemId()+"is out of stock!!");
+                            System.out.println("item number:"+pur.getItem().get(i).getItemId()+" is out of stock!!");
                             return false;
                         }
                 }
@@ -98,9 +101,7 @@ public class inbal {
     }
 
     public boolean updateStockMinus(Purchase pur) {
-        if(!isItemsInStock(pur))
-            return false;
-        int i;
+        int i, j;
         Connection connection = null;
         try {
 
@@ -111,6 +112,20 @@ public class inbal {
             for(i=0;i<pur.getItem().size();i++) {
                 String strUpdate = "update items set currentStock = currentStock -1 where itemid =" + pur.getItem().get(i).getItemId();
                 int countUpdated = stmt.executeUpdate(strUpdate);
+                ResultSet rs = stmt.executeQuery("select currentStock from items where itemid ="+pur.getItem().get(i).getItemId());
+                rs.next();
+                int currStock = rs.getInt("currentStock");
+                if(currStock<0)
+                {
+                    System.out.println("item number:"+pur.getItem().get(i).getItemId()+" is out of stock!!");
+                    for(j=i;j>=0;j--)
+                    {
+                        String strUpdate2 = "update items set currentStock = currentStock +1 where itemid =" + pur.getItem().get(j).getItemId();
+                        int countUpdated2 = stmt.executeUpdate(strUpdate2);
+                    }
+                    return false;
+                }
+
             }
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();

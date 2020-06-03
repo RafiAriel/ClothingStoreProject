@@ -25,14 +25,13 @@ public class MVCDriver {
 
         Purchase p =  model.lastPurchase(3);
         Member m = new Member("rafi", "7/6/2002", 10,2000);
-        Shirt s = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 1, "wow");
-        Shirt w = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 2, "wow");
+        Shirt s = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 4, "wow");
+        Shirt w = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 3, "wow");
 
         items.add(s);
-        items.add(w);
+
         Purchase a = new Purchase(m, items, 500,100);
         model.addClubMember(m);
-        System.out.print('\n');
         System.out.println( inb.Selling(a));
     }
 
