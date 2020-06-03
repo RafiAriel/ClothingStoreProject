@@ -33,13 +33,13 @@ public class Data {
     Connection connection = null;
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/db?useSSL=false", "root", "ProjectClothingStore");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
         // Step 2:Create a statement using connection object
         Statement stmt = connection.createStatement();
 
         // Step 3: Execute the query or update query
-        ResultSet rs2 = stmt.executeQuery("SELECT distinct * FROM (items join allpurchase using(itemid))join clubmembers using(id) order by id, date;\n;");
+        ResultSet rs2 = stmt.executeQuery("SELECT distinct * FROM (items join allpurchase using(itemid))join clubmembers using(id) order by id, date;");
 
         rs2.next();
         String name = rs2.getString("name");
@@ -147,7 +147,7 @@ public class Data {
             ClubMembers = new ArrayList<Member>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -189,7 +189,7 @@ public class Data {
 
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();

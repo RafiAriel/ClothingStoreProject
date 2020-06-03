@@ -1,12 +1,17 @@
 package Model;
+
 import Entities.*;
 import Model.*;
 import View.*;
+import Model.inbal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class myModel {
+public class myModel implements Runnable {
 
     public myModel() {
     }
@@ -15,8 +20,6 @@ public class myModel {
         int i;
         ArrayList<Item> items = new ArrayList<>();
         try {
-
-
             items = Data.getInstance().getItems();
             for (i = 0; i < items.size(); i++) {
                 if ((Integer.valueOf(id) == (items.get(i).getItemId()) && items.get(i).getSize() == size && items.get(i).getBaseStock() - items.get(i).getCurrentStock() > 0)) {
@@ -36,7 +39,7 @@ public class myModel {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
                         " (?, ?, ?, ?);";
 
@@ -121,7 +124,7 @@ public class myModel {
 
     public void deleteClubMember(int id) {
         Connection connection = null;
-        String idNumber=String.valueOf(id);
+        String idNumber = String.valueOf(id);
         String DELETE_USERS_SQL = "delete from clubmembers where id = " + idNumber + ";";
         if (isExistsClubMember(id) == true) {
 
@@ -137,10 +140,105 @@ public class myModel {
                 e.printStackTrace();
             }
 
-        }
-        else {
+        } else {
             System.out.println("Unable to delete, no such user in the system");
         }
+    }
+
+    public ArrayList<Item> checkCurrentStock() {
+        int i;
+        double presentOfCurrentStock = 0.5;
+        ArrayList<Item> items = new ArrayList<Item>();
+        ArrayList<Item> itemsEndingSoon = new ArrayList<Item>();
+        try {
+            items = Data.getInstance().getItems();
+            for (i = 0; i < items.size(); i++) {
+                if (((double)items.get(i).getCurrentStock() / items.get(i).getBaseStock()) < presentOfCurrentStock) {
+                    itemsEndingSoon.add(items.get(i));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return itemsEndingSoon;
+    }
+    public int Login(int id, String password) {
+        int i;
+        ArrayList<Worker> Workers = null;
+        try {
+            Workers = new ArrayList<>();
+            Workers = Data.getInstance().getWorkers();
+            for (i = 0; i < Workers.size(); i++) {
+                if((Integer.valueOf(id) == Workers.get(i).getId() && Workers.get(i).getPassword().equals(password)))
+                {
+                    return Workers.get(i).getId();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return -1;
+    }
+
+    public boolean isManager(int id, String password) {
+        try {
+            int i = Login(id, password);
+            if(i == 1)
+            {
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean isWorker(int id, String password) {
+        try {
+            int i = Login(id, password);
+            if(i != -1 && i != 1)
+            {
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public void run() {
+
+    }
+    public void BirthdayPointAuto()
+    {
+        int i;
+        Connection connection = null;
+        ArrayList<Member> ClubMembers = null;
+        try {
+            ClubMembers = new ArrayList<Member>();
+            ClubMembers = Data.getInstance().getClubMembers();
+            Date date = new Date();
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int month = localDate.getMonthValue();
+            int day   = localDate.getDayOfMonth();
+            for (i = 0; i < ClubMembers.size(); i++) {
+                String[] dateClubMembers = ClubMembers.get(i).getDateOfBirth().split("/");
+                int dayMember = Integer.parseInt(dateClubMembers[0]);
+                int monthMember = Integer.parseInt(dateClubMembers[1]);
+                if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember))
+                {
+                
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
