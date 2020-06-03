@@ -20,10 +20,17 @@ public class MVCDriver {
         ArrayList<Item> items = new ArrayList<>();
         inbal inb = new inbal();
 
-        Purchase p=  model.lastPurchase(2), a = new Purchase();
-        Member m = p.getClubMember();
+        Purchase p =  model.lastPurchase(3);
+        Member m = new Member("rafi", "7/6/2002", 10,2000);
+        Shirt s = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 1, "wow");
+        Shirt w = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 2, "wow");
+
+        items.add(s);
+        items.add(w);
+        Purchase a = new Purchase(m, items, 500,100);
+        model.addClubMember(m);
         System.out.print('\n');
-        //System.out.print( inb.updateMembersPoints(200,m));
+        System.out.println( inb.Selling(a));
     }
 
 }

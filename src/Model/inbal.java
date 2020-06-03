@@ -38,7 +38,7 @@ public class inbal {
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {
-                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItem().get(i).getItemId()+","+"1/1/1"+pur.getShoppingRating()+")";
+                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItem().get(i).getItemId()+",01/01/2001,"+pur.getShoppingRating()+")";
                 int countUpdated = stmt.executeUpdate(strInsert);
             }
 
