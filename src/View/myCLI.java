@@ -24,7 +24,7 @@ public class myCLI {
         try {
             Runnable runnable = new myModel();
             Thread t1 = new Thread(runnable);
-            for (i = 144; i > 0; i--) { // 10 minutes loop , per day
+            for (i = 144; i > 0; i--) { // 10 minutes loop, All day long
                 t1.run();
                 Thread.sleep(6000000); // 10 Minutes
             }
