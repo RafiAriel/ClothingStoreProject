@@ -31,6 +31,7 @@ public class MVCDriver {
         items.add(s);
 
         Purchase a = new Purchase(m, items, 500,100);
+        model.Selling(a);
         model.addClubMember(m);
         System.out.println( model.Selling(a));
     }
