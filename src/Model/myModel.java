@@ -273,23 +273,22 @@ public class myModel implements Runnable {
         return true;
     }
 
-    public ArrayList<Item> checkCurrentStock() {
+    public void checkCurrentStock() {
         int i;
-        double presentOfCurrentStock = 0.5;
+        System.out.println("checkCurrentStock");
+        double presentOfCurrentStock = 0.2;
         ArrayList<Item> items = new ArrayList<Item>();
-        ArrayList<Item> itemsEndingSoon = new ArrayList<Item>();
         try {
             items = Data.getInstance().getItems();
             for (i = 0; i < items.size(); i++) {
                 if (((double)items.get(i).getCurrentStock() / items.get(i).getBaseStock()) < presentOfCurrentStock) {
-                    itemsEndingSoon.add(items.get(i));
+                    System.out.println("System Message: stock is low: " + "item id:" + items.get(i).getItemId());
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return itemsEndingSoon;
+
     }
     public int Login(int id, String password) {
         int i;
@@ -340,7 +339,9 @@ public class myModel implements Runnable {
     @Override
     public void run() {
 
+        checkCurrentStock();
     }
+
 
     public void BirthdayPointAuto() {
         int i;
@@ -359,7 +360,8 @@ public class myModel implements Runnable {
                 int monthMember = Integer.parseInt(dateClubMembers[1]);
                 if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember))
                 {
-                
+                updateMembersPoints(250, ClubMembers.get(i));
+                System.out.println("System message: 250 credits added to club member" + ClubMembers.get(i).getName() + ", id: " + ClubMembers.get(i).getId());
                 }
 
             }
