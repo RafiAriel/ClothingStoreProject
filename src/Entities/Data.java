@@ -249,7 +249,7 @@ public class Data {
             Workers = new ArrayList<>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();

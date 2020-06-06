@@ -45,4 +45,16 @@ public class Purchase {
         this.price = price;
         this.shoppingRating = shoppingRating;
     }
+
+    public Purchase(Member clubMember, ArrayList<Item> item, int shoppingRating) {
+        this.clubMember = clubMember;
+        this.item = item;
+        double sum = 0;
+        for(int i=0;i<item.size();i++)
+        {
+           sum+= item.get(i).getPrice();
+        }
+        this.price = sum;
+        this.shoppingRating = shoppingRating;
+    }
 }

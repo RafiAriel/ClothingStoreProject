@@ -165,7 +165,7 @@ public class myModel implements Runnable {
     public String Selling(Purchase pur) {
         if(!updateStockMinus(pur))
             return "Purchase faild!";
-        updateMembersPoints(pur.getPrice(), pur.getClubMember());
+        updateMembersPoints(pur.getPrice()*0.1, pur.getClubMember());
         int i;
         String strDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         Connection connection = null;
@@ -213,7 +213,7 @@ public class myModel implements Runnable {
         return true;
     }
 
-    public void updateMembersPoints(double price, Member m) {
+    public void updateMembersPoints(double bonus, Member m) {
         Connection connection = null;
         try {
 
@@ -221,7 +221,7 @@ public class myModel implements Runnable {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
-            String strUpdate = "update clubmembers set pointgained = pointgained + 0.1*" + price + " where id =" + m.getId();
+            String strUpdate = "update clubmembers set pointgained = pointgained + " + bonus + " where id =" + m.getId();
             int countUpdated = stmt.executeUpdate(strUpdate);
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -291,6 +291,7 @@ public class myModel implements Runnable {
         }
         return itemsEndingSoon;
     }
+
     public int Login(int id, String password) {
         int i;
         ArrayList<Worker> Workers = null;
@@ -345,23 +346,22 @@ public class myModel implements Runnable {
     public void BirthdayPointAuto() {
         int i;
         Connection connection = null;
-        ArrayList<Member> ClubMembers = null;
+        ArrayList<Member> clubMembers = null;
         try {
-            ClubMembers = new ArrayList<Member>();
-            ClubMembers = Data.getInstance().getClubMembers();
+            clubMembers = new ArrayList<Member>();
+            clubMembers = Data.getInstance().getClubMembers();
             Date date = new Date();
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int month = localDate.getMonthValue();
             int day   = localDate.getDayOfMonth();
-            for (i = 0; i < ClubMembers.size(); i++) {
-                String[] dateClubMembers = ClubMembers.get(i).getDateOfBirth().split("/");
+            for (i = 0; i < clubMembers.size(); i++) {
+                String[] dateClubMembers = clubMembers.get(i).getDateOfBirth().split("/");
                 int dayMember = Integer.parseInt(dateClubMembers[0]);
                 int monthMember = Integer.parseInt(dateClubMembers[1]);
                 if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember))
                 {
-                
+                    updateMembersPoints(250, clubMembers.get(i));
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
