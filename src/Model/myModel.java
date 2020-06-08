@@ -39,7 +39,7 @@ public class myModel implements Runnable {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
                         " (?, ?, ?, ?);";
 
@@ -146,15 +146,15 @@ public class myModel implements Runnable {
     }
 
     public double averageSellingRate() {
-        int i=1;
-        double sum=0;
+        int i = 1;
+        double sum = 0;
         ArrayList<Purchase> pur = new ArrayList<>();
         try {
             pur = Data.getInstance().getAllPurchase();
             for (i = 0; i < pur.size(); i++) {
                 sum += pur.get(i).getShoppingRating();
             }
-            sum/=i;
+            sum /= i;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,20 +163,21 @@ public class myModel implements Runnable {
     }
 
     public String Selling(Purchase pur) {
-        if(!updateStockMinus(pur))
+        if (!updateStockMinus(pur))
             return "Purchase faild!";
-        updateMembersPoints(pur.getPrice()*0.1, pur.getClubMember());
+        double newprice = PointDiscount(pur.getPrice(),pur.getClubMember());
+        updateMembersPoints(newprice, pur.getClubMember());
         int i;
         String strDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         Connection connection = null;
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
-            for(i=0;i<pur.getItem().size();i++) {
-                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItem().get(i).getItemId()+",\""+strDate+"\","+pur.getShoppingRating()+")";
+            for (i = 0; i < pur.getItem().size(); i++) {
+                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItem().get(i).getItemId() + ",\"" + strDate + "\"," + pur.getShoppingRating() + ")";
                 int countUpdated = stmt.executeUpdate(strInsert);
             }
 
@@ -202,7 +203,7 @@ public class myModel implements Runnable {
                 for (j = 0; j < items.size(); j++) {
                     if (pur.getItem().get(i).getItemId() == items.get(j).getItemId())
                         if (items.get(j).getCurrentStock() <= 0) {
-                            System.out.println("item number:"+pur.getItem().get(i).getItemId()+" is out of stock!!");
+                            System.out.println("item number:" + pur.getItem().get(i).getItemId() + " is out of stock!!");
                             return false;
                         }
                 }
@@ -213,7 +214,7 @@ public class myModel implements Runnable {
         return true;
     }
 
-    public void updateMembersPoints(double bonus, Member m) {
+    public void updateMembersPoints(double price, Member m) {
         Connection connection = null;
         try {
 
@@ -221,7 +222,7 @@ public class myModel implements Runnable {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
-            String strUpdate = "update clubmembers set pointgained = pointgained + " + bonus + " where id =" + m.getId();
+            String strUpdate = "update clubmembers set pointgained = pointgained + 0.1*" + price + " where id =" + m.getId();
             int countUpdated = stmt.executeUpdate(strUpdate);
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -238,23 +239,22 @@ public class myModel implements Runnable {
         int i, j;
         Connection connection = null;
         try {
-
+            ArrayList<Item> purItems = pur.getItem();
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
-            for(i=0;i<pur.getItem().size();i++) {
-                String strUpdate = "update items set currentStock = currentStock -1 where itemid =" + pur.getItem().get(i).getItemId();
+
+            for (i = 0; i < purItems.size(); i++) {
+                String strUpdate = "update items set currentStock = currentStock -1 where itemid =" + purItems.get(i).getItemId();
                 int countUpdated = stmt.executeUpdate(strUpdate);
-                ResultSet rs = stmt.executeQuery("select currentStock from items where itemid ="+pur.getItem().get(i).getItemId());
+                ResultSet rs = stmt.executeQuery("select currentStock from items where itemid =" + purItems.get(i).getItemId());
                 rs.next();
                 int currStock = rs.getInt("currentStock");
-                if(currStock<0)
-                {
-                    System.out.println("item number:"+pur.getItem().get(i).getItemId()+" is out of stock!!");
-                    for(j=i;j>=0;j--)
-                    {
-                        String strUpdate2 = "update items set currentStock = currentStock +1 where itemid =" + pur.getItem().get(j).getItemId();
+                if (currStock < 0) {
+                    System.out.println("item number:" + purItems.get(i).getItemId() + " is out of stock!!");
+                    for (j = i; j >= 0; j--) {
+                        String strUpdate2 = "update items set currentStock = currentStock +1 where itemid =" + purItems.get(j).getItemId();
                         int countUpdated2 = stmt.executeUpdate(strUpdate2);
                     }
                     return false;
@@ -273,23 +273,24 @@ public class myModel implements Runnable {
         return true;
     }
 
-    public ArrayList<Item> checkCurrentStock() {
+    public void checkCurrentStock() {
         int i;
-        double presentOfCurrentStock = 0.5;
+        System.out.println("checkCurrentStock");
+        double presentOfCurrentStock = 0.2;
         ArrayList<Item> items = new ArrayList<Item>();
         ArrayList<Item> itemsEndingSoon = new ArrayList<Item>();
         try {
             items = Data.getInstance().getItems();
             for (i = 0; i < items.size(); i++) {
                 if (((double)items.get(i).getCurrentStock() / items.get(i).getBaseStock()) < presentOfCurrentStock) {
-                    itemsEndingSoon.add(items.get(i));
+                    System.out.println("System Message: stock is low: " + "item id:" + items.get(i).getItemId());
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return itemsEndingSoon;
+
     }
 
     public int Login(int id, String password) {
@@ -299,8 +300,7 @@ public class myModel implements Runnable {
             Workers = new ArrayList<>();
             Workers = Data.getInstance().getWorkers();
             for (i = 0; i < Workers.size(); i++) {
-                if((Integer.valueOf(id) == Workers.get(i).getId() && Workers.get(i).getPassword().equals(password)))
-                {
+                if ((Integer.valueOf(id) == Workers.get(i).getId() && Workers.get(i).getPassword().equals(password))) {
                     return Workers.get(i).getId();
                 }
             }
@@ -314,8 +314,7 @@ public class myModel implements Runnable {
     public boolean isManager(int id, String password) {
         try {
             int i = Login(id, password);
-            if(i == 1)
-            {
+            if (i == 1) {
                 return true;
             }
 
@@ -324,11 +323,11 @@ public class myModel implements Runnable {
         }
         return false;
     }
+
     public boolean isWorker(int id, String password) {
         try {
             int i = Login(id, password);
-            if(i != -1 && i != 1)
-            {
+            if (i != -1 && i != 1) {
                 return true;
             }
 
@@ -341,32 +340,50 @@ public class myModel implements Runnable {
     @Override
     public void run() {
 
+        checkCurrentStock();
     }
+
 
     public void BirthdayPointAuto() {
         int i;
         Connection connection = null;
-        ArrayList<Member> clubMembers = null;
+        ArrayList<Member> ClubMembers = null;
         try {
-            clubMembers = new ArrayList<Member>();
-            clubMembers = Data.getInstance().getClubMembers();
+            ClubMembers = new ArrayList<Member>();
+            ClubMembers = Data.getInstance().getClubMembers();
             Date date = new Date();
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int month = localDate.getMonthValue();
-            int day   = localDate.getDayOfMonth();
-            for (i = 0; i < clubMembers.size(); i++) {
-                String[] dateClubMembers = clubMembers.get(i).getDateOfBirth().split("/");
+            int day = localDate.getDayOfMonth();
+            for (i = 0; i < ClubMembers.size(); i++) {
+                String[] dateClubMembers = ClubMembers.get(i).getDateOfBirth().split("/");
                 int dayMember = Integer.parseInt(dateClubMembers[0]);
                 int monthMember = Integer.parseInt(dateClubMembers[1]);
                 if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember))
                 {
-                    updateMembersPoints(250, clubMembers.get(i));
+                    updateMembersPoints(250, ClubMembers.get(i));
+                    System.out.println("System message: 250 credits added to club member" + ClubMembers.get(i).getName() + ", id: " + ClubMembers.get(i).getId());
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-}
 
+
+    private double PointDiscount(double price, Member clubmember) {
+        int point = clubmember.getPointsGained();
+        if (price >= point) {
+            clubmember.setPointsGained(0);
+            price -= point;
+            return price;
+        } else {
+            clubmember.setPointsGained((int) (point - price));
+            return 0;
+        }
+
+    }
+
+}
