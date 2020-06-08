@@ -21,19 +21,7 @@ public class MVCDriver {
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
         ArrayList<Item> items = new ArrayList<>();
-        inbal inb = new inbal();
-        System.out.print(model.averageSellingRate());
-        Purchase p =  model.lastPurchase(3);
-        Member m = new Member("rafi", "7/6/2002", 10,2000);
-        Shirt s = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 4, "wow");
-        Shirt w = new Shirt("blue", "adidas","men","shirt", 300, 10, 300, 600, 3, "wow");
 
-        items.add(s);
-
-        Purchase a = new Purchase(m, items, 500,100);
-        model.Selling(a);
-        model.addClubMember(m);
-        System.out.println( model.Selling(a));
     }
 
 }

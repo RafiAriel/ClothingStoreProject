@@ -176,8 +176,8 @@ public class myModel implements Runnable {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
-            for (i = 0; i < pur.getItems().size(); i++) {
-                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItems().get(i).getItemId() + ",\"" + strDate + "\"," + pur.getShoppingRating() + ")";
+            for (i = 0; i < pur.getItem().size(); i++) {
+                String strInsert = "insert into allpurchase values (" + pur.getClubMember().getId() + "," + pur.getItem().get(i).getItemId() + ",\"" + strDate + "\"," + pur.getShoppingRating() + ")";
                 int countUpdated = stmt.executeUpdate(strInsert);
             }
 
