@@ -131,7 +131,7 @@ public class myModel implements Runnable {
             try {
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(DELETE_USERS_SQL);
                 System.out.println("Deletion was successfully");
@@ -342,7 +342,6 @@ public class myModel implements Runnable {
         checkCurrentStock();
     }
 
-
     public void BirthdayPointAuto() {
         int i;
         Connection connection = null;
@@ -370,5 +369,7 @@ public class myModel implements Runnable {
         }
 
     }
+
+
 }
 
