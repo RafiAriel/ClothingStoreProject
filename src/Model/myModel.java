@@ -199,11 +199,11 @@ public class myModel implements Runnable {
         ArrayList<Item> items = new ArrayList<>();
         try {
             items = Data.getInstance().getItems();
-            for (i = 0; i < pur.getItems().size(); i++) {
+            for (i = 0; i < pur.getItem().size(); i++) {
                 for (j = 0; j < items.size(); j++) {
-                    if (pur.getItems().get(i).getItemId() == items.get(j).getItemId())
+                    if (pur.getItem().get(i).getItemId() == items.get(j).getItemId())
                         if (items.get(j).getCurrentStock() <= 0) {
-                            System.out.println("item number:" + pur.getItems().get(i).getItemId() + " is out of stock!!");
+                            System.out.println("item number:" + pur.getItem().get(i).getItemId() + " is out of stock!!");
                             return false;
                         }
                 }
@@ -239,7 +239,7 @@ public class myModel implements Runnable {
         int i, j;
         Connection connection = null;
         try {
-            ArrayList<Item> purItems = pur.getItems();
+            ArrayList<Item> purItems = pur.getItem();
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
