@@ -51,7 +51,7 @@ public class inbal {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
             String strUpdate = "update workers set hourlysalary = "  + newSalary + " where id =" + workerId;
@@ -74,7 +74,7 @@ public class inbal {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 String INSERT_USERS_SQL = "INSERT INTO workers" + "  (name, id, dateofbirth, hourlysalary, numHourMonth, jobType, password) VALUES " +
                         " (?, ?, ?, ?, ?, ?, ?);";
 
