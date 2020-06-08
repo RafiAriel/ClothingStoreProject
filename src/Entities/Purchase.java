@@ -13,7 +13,7 @@ public class Purchase {
     public void setClubMember(Member clubMember) {
         this.clubMember = clubMember;
     }
-    public ArrayList<Item> getItem() {
+    public ArrayList<Item> getItems() {
         return item;
     }
     public void setItem(ArrayList<Item> item) {
