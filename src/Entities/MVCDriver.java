@@ -20,7 +20,6 @@ public class MVCDriver {
         myModel model = new myModel();
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
-        ArrayList<Item> items = new ArrayList<>();
 
     }
 
