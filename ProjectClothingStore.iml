@@ -10,19 +10,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../פרויקט חנות בגדים/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar!/" />
+          <root url="file://$MODULE_DIR$/../פרויקט חנות בגדים/mysql-connector-java-5.1.49" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mysql-connector-java-5.1.49-bin.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../פרויקט חנות בגדים/mysql-connector-java-5.1.49/src" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../פרויקט חנות בגדים/mysql-connector-java-5.1.49" recursive="false" />
       </library>
     </orderEntry>
   </component>

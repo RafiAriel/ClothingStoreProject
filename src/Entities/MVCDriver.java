@@ -12,9 +12,6 @@ public class MVCDriver {
         myModel model = new myModel();
         myCLI view = new myCLI();
         myController co =  new myController (model , view);
-        inbal inb = new inbal();
-
-        ArrayList<Item> items = new ArrayList<>();
 
 
 
