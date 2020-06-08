@@ -9,7 +9,7 @@ import javax.swing.*;
 public class myCLI {
     public myCLI() {
         BirthDayCLI();
-        checkCurrentStockThread();
+      //  checkCurrentStockThread();
     }
 
 

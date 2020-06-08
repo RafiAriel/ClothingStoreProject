@@ -35,39 +35,40 @@ public class myModel implements Runnable {
     }
 
     public void addClubMember(Member m) {
+
         if (isExistsClubMember(m.getId()) == false) {
-            Connection connection = null;
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
+                    " (?, ?, ?, ?);";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+            connection.setAutoCommit(false);
+            preparedStatement.setString(1, m.getName());
+            preparedStatement.setInt(2, m.getId());
+            preparedStatement.setString(3, m.getDateOfBirth());
+            preparedStatement.setInt(4, m.getPointsGained());
+            preparedStatement.addBatch();
+            int[] updateCounts = preparedStatement.executeBatch();
+            connection.commit();
+            connection.setAutoCommit(true);
+
+
+        } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
-                String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
-                        " (?, ?, ?, ?);";
-
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
-                connection.setAutoCommit(false);
-                preparedStatement.setString(1, m.getName());
-                preparedStatement.setInt(2, m.getId());
-                preparedStatement.setString(3, m.getDateOfBirth());
-                preparedStatement.setInt(4, m.getPointsGained());
-                preparedStatement.addBatch();
-                int[] updateCounts = preparedStatement.executeBatch();
-                connection.commit();
-                connection.setAutoCommit(true);
-
-
-            } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
+                connection.close();
+            } catch (SQLException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
             }
 
         }
+
     }
+}
 
     public Purchase lastPurchase(int memId) {
         int i;
@@ -165,7 +166,10 @@ public class myModel implements Runnable {
     public String Selling(Purchase pur) {
         if(!updateStockMinus(pur))
             return "Purchase faild!";
-        updateMembersPoints(pur.getPrice(), pur.getClubMember());
+
+        double price = newPrice(pur.getPrice(),  pur.getClubMember());
+        System.out.println("The price is: " + price);
+        updateMembersPoints(0.1*price, pur.getClubMember());
         int i;
         String strDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         Connection connection = null;
@@ -190,6 +194,21 @@ public class myModel implements Runnable {
             }
         }
         return "Purchase succeeded!";
+
+    }
+
+    public double newPrice(double price, Member m) {
+        int points = m.getPointsGained();
+        if (price>=points) {
+            m.setPointsGained(0);
+            updateMembersPoints(0, m);
+            return price - points;
+        }
+        else {
+            m.setPointsGained(points - (int)price);
+            updateMembersPoints(-1* (int)price, m);
+            return 0;
+        }
 
     }
 
@@ -221,7 +240,7 @@ public class myModel implements Runnable {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
-            String strUpdate = "update clubmembers set pointgained = pointgained + 0.1*" + price + " where id =" + m.getId();
+            String strUpdate = "update clubmembers set pointgained = pointgained +" + price + " where id =" + m.getId();
             int countUpdated = stmt.executeUpdate(strUpdate);
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();

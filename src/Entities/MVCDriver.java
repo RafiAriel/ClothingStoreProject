@@ -16,8 +16,12 @@ public class MVCDriver {
 
         ArrayList<Item> items = new ArrayList<>();
 
-
-
+        Member m = new Member("alon","5/5/5",7979,7000);
+        model.addClubMember(m);
+        Item item = model.searchItem(1, 40);
+        items.add(item);
+        Purchase p = new Purchase(m,items, 30);
+        System.out.println(model.Selling(p));
 
     }
 
