@@ -1,4 +1,7 @@
 package controller;
 
-public class Controller {
+import model.Model;
+
+public interface Controller {
+
 }

@@ -8,14 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class WorkerModel {
+public class WorkerModel implements Model {
 
     public void addWorker(Worker w) {
         if (isExistsWorker(w.getId()) == false) {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 String INSERT_USERS_SQL = "INSERT INTO workers" + "  (name, id, dateofbirth, hourlysalary, numHourMonth, jobType, password) VALUES " +
                         " (?, ?, ?, ?, ?, ?, ?);";
 
@@ -24,8 +24,8 @@ public class WorkerModel {
                 preparedStatement.setString(1, w.getName());
                 preparedStatement.setInt(2, w.getId());
                 preparedStatement.setString(3, w.getDateOfBirth());
-                preparedStatement.setDouble(4, w.getHourlySalary());
-                preparedStatement.setDouble(5, w.getNumHourMonth());
+                preparedStatement.setInt(4, w.getHourlySalary());
+                preparedStatement.setInt(5, w.getNumHourMonth());
                 preparedStatement.setString(6, w.getJobType());
                 preparedStatement.setString(7, w.getPassword());
                 preparedStatement.addBatch();

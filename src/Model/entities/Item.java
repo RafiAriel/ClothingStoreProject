@@ -2,7 +2,7 @@ package model.entities;
 
 public abstract class Item {
     private String color, brand, gender, type;
-    private double price;
+    private int price;
     private int size, currentStock, baseStock, itemId;
 
     public Item() {
@@ -50,11 +50,11 @@ public abstract class Item {
         this.type = type;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -90,7 +90,7 @@ public abstract class Item {
         this.itemId = itemId;
     }
 
-    public Item(String color, String brand, String gender, String type, double price, int size, int currentStock, int baseStock, int itemId) {
+    public Item(String color, String brand, String gender, String type, int price, int size, int currentStock, int baseStock, int itemId) {
         this.color = color;
         this.brand = brand;
         this.gender = gender;

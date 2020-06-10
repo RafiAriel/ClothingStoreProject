@@ -1,19 +1,19 @@
 package model.entities;
 
 public class Worker extends Person{
-    private double hourlySalary, numHourMonth;
+    private int hourlySalary, numHourMonth;
     private String jobType, password;
 
-    public double getHourlySalary() {
+    public int getHourlySalary() {
         return hourlySalary;
     }
-    public void setHourlySalary(double hourlySalary) {
+    public void setHourlySalary(int hourlySalary) {
         this.hourlySalary = hourlySalary;
     }
-    public double getNumHourMonth() {
+    public int getNumHourMonth() {
         return numHourMonth;
     }
-    public void setNumHourMonth(double numHourMonth) {
+    public void setNumHourMonth(int numHourMonth) {
         this.numHourMonth = numHourMonth;
     }
     public String getJobType() {
@@ -29,7 +29,7 @@ public class Worker extends Person{
         this.password = password;
     }
 
-    public Worker(String name, String dateOfBirth, int id, double hourlySalary, double numHourMonth, String jobType, String password) {
+    public Worker(String name, String dateOfBirth, int id, int hourlySalary, int numHourMonth, String jobType, String password) {
         super(name, dateOfBirth, id);
         this.hourlySalary = hourlySalary;
         this.numHourMonth = numHourMonth;

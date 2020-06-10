@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PurchaseModel {
+public class PurchaseModel implements Model {
 
     public Purchase lastPurchase(int memId) {
         int i;
@@ -27,21 +27,21 @@ public class PurchaseModel {
         return p;
     }
 
-    public String Selling(Purchase pur) {
+    public String selling(Purchase pur) {
         MemberModel memMod = new MemberModel();
         if(!updateStockMinus(pur))
             return "Purchase faild!";
 
-        double price = newPrice(pur.getPrice(),  pur.getClubMember());
+        int price = newPrice(pur.getPrice(),  pur.getClubMember());
         System.out.println("The price is: " + price);
-        memMod.updateMembersPoints(0.1*price, pur.getClubMember());
+        memMod.updateMembersPoints((int) (0.1*price), pur.getClubMember());
         int i;
         String strDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         Connection connection = null;
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {
@@ -62,7 +62,7 @@ public class PurchaseModel {
 
     }
 
-    public double newPrice(double price, Member m) {
+    public int newPrice(int price, Member m) {
         int points = m.getPointsGained();
         MemberModel memMod = new MemberModel();
         if (price>=points) {
@@ -79,14 +79,13 @@ public class PurchaseModel {
     }
 
 
-
     public boolean updateStockMinus(Purchase pur) {
         int i, j;
         Connection connection = null;
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {

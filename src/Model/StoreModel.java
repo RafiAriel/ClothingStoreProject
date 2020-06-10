@@ -5,7 +5,7 @@ import model.entities.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class StoreModel{
+public class StoreModel implements Model {
     private static StoreModel db;
     private static Object LockObject = new Object();
     private StoreModel()
@@ -28,12 +28,12 @@ public class StoreModel{
     public static ArrayList<Purchase> getAllPurchase() {
         ArrayList<Purchase> allpurchase = new ArrayList<>();
         ArrayList<Item> items = new ArrayList<>();
-        double totalPrice;
+        int totalPrice;
         int rate;
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -49,11 +49,11 @@ public class StoreModel{
             Integer pointgained1 = Integer.valueOf(pointgained);
             Member m1 = new Member(name,dateofbirth, id, pointgained1);
             String date =rs2.getString("date");
-            totalPrice = rs2.getDouble("Price");
+            totalPrice = rs2.getInt("Price");
             rate = rs2.getInt("shoppingrating");
             int itemid = rs2.getInt("itemid");
             String color = rs2.getString("color");
-            double price = rs2.getDouble("price");
+            int price = rs2.getInt("price");
             String type = rs2.getString("type");
             int size = rs2.getInt("size");
             String brand = rs2.getString("brand");
@@ -98,7 +98,7 @@ public class StoreModel{
 
                 itemid = rs2.getInt("itemid");
                 color = rs2.getString("color");
-                price = rs2.getDouble("price");
+                price = rs2.getInt("price");
                 totalPrice+=price;
                 type = rs2.getString("type");
                 size = rs2.getInt("size");
@@ -147,7 +147,7 @@ public class StoreModel{
             ClubMembers = new ArrayList<Member>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -189,7 +189,7 @@ public class StoreModel{
 
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -201,7 +201,7 @@ public class StoreModel{
             while (rs.next()) {
                 int id = rs.getInt("itemid");
                 String color = rs.getString("color");
-                double price = rs.getDouble("price");
+                int price = rs.getInt("price");
                 String type = rs.getString("type");
                 int size = rs.getInt("size");
                 String brand = rs.getString("brand");
@@ -249,7 +249,7 @@ public class StoreModel{
             Workers = new ArrayList<>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -263,8 +263,8 @@ public class StoreModel{
                     String name = rs.getString("name");
                     int id = rs.getInt("id");
                     String dateofbirth = rs.getString("dateofbirth");
-                    double hourlysalary = rs.getDouble("hourlysalary");
-                    double numHourMonth = rs.getDouble("numHourMonth");
+                    int hourlysalary = rs.getInt("hourlysalary");
+                    int numHourMonth = rs.getInt("numHourMonth");
                     String jobType = rs.getString("jobType");
                     String password = rs.getString("password");
                     Worker w = new Worker(name, dateofbirth, id ,hourlysalary, numHourMonth, jobType, password);
@@ -291,9 +291,9 @@ public class StoreModel{
         return Workers;
     }
 
-    public double averageSellingRate() {
+    public int averageSellingRate() {
         int i=1;
-        double sum=0;
+        int sum=0;
         ArrayList<Purchase> pur = new ArrayList<>();
         try {
             pur = StoreModel.getInstance().getAllPurchase();

@@ -8,7 +8,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MemberModel {
+public class MemberModel implements Model {
     public MemberModel() {
     }
 
@@ -18,7 +18,7 @@ public class MemberModel {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
                         " (?, ?, ?, ?);";
 
@@ -57,7 +57,7 @@ public class MemberModel {
             try {
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(DELETE_USERS_SQL);
                 System.out.println("Deletion was successfully");
@@ -91,22 +91,22 @@ public class MemberModel {
     public void BirthdayPointAuto() {
         int i;
         Connection connection = null;
-        ArrayList<Member> ClubMembers = null;
+        ArrayList<Member> clubMembers = null;
         try {
-            ClubMembers = new ArrayList<Member>();
-            ClubMembers = StoreModel.getInstance().getClubMembers();
+            clubMembers = new ArrayList<Member>();
+            clubMembers = StoreModel.getInstance().getClubMembers();
             Date date = new Date();
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int month = localDate.getMonthValue();
             int day   = localDate.getDayOfMonth();
-            for (i = 0; i < ClubMembers.size(); i++) {
-                String[] dateClubMembers = ClubMembers.get(i).getDateOfBirth().split("/");
+            for (i = 0; i < clubMembers.size(); i++) {
+                String[] dateClubMembers = clubMembers.get(i).getDateOfBirth().split("/");
                 int dayMember = Integer.parseInt(dateClubMembers[0]);
                 int monthMember = Integer.parseInt(dateClubMembers[1]);
                 if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember))
                 {
-                    updateMembersPoints(250, ClubMembers.get(i));
-                    System.out.println("System message: 250 credits added to club member" + ClubMembers.get(i).getName() + ", id: " + ClubMembers.get(i).getId());
+                    updateMembersPoints(250, clubMembers.get(i));
+                    System.out.println("System message: 250 credits added to club member" + clubMembers.get(i).getName() + ", id: " + clubMembers.get(i).getId());
                 }
 
             }
@@ -116,12 +116,12 @@ public class MemberModel {
 
     }
 
-    public void updateMembersPoints(double price, Member m) {
+    public void updateMembersPoints(int price, Member m) {
         Connection connection = null;
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
             String strUpdate = "update clubmembers set pointgained = pointgained +" + price + " where id =" + m.getId();
@@ -136,4 +136,8 @@ public class MemberModel {
             }
         }
     }
+
+
+
+
 }

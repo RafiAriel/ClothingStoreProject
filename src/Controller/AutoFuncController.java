@@ -1,15 +1,18 @@
 package controller;
 import View.*;
-import View.UserInterface;
 import model.*;
 
 
-public class AutoFuncModel extends OpenController {
-    UserInterface userInterface;
-    model.AutoFuncModel model;
+public class AutoFuncController implements Controller {
+    ViewInterface viewInterface;
+    AutoFuncModel model;
 
-    public AutoFuncModel(UserInterface userInterface, model.AutoFuncModel model) {
-        this.userInterface = userInterface;
+    public AutoFuncController(ViewInterface viewInterface, AutoFuncModel model) {
+        this.viewInterface = viewInterface;
         this.model = model;
+    }
+    public void run()
+    {
+        model.checkCurrentStockThread();
     }
 }
