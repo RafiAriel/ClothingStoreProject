@@ -14,26 +14,26 @@ public class ItemController {
 
     public Item searchItem(int id, int size)
     {
-        return model.searchItem(id, size);
+       return model.searchItem(id,size);
     }
-    public int bestSellingProduct() {
-        int x = model.bestSellingProduct().getItemId();
-        return x;
+
+    public Item bestSellingProduct() { return model.bestSellingProduct(); }
+
+    public boolean isAllItemsExist(Purchase pur) {
+        return model.isAllItemsExist(pur);
     }
-    public boolean isItemsInStock(Purchase pur)
-    {
-        return model.isItemsInStock(pur);
-    }
-    public void addPants(Pants pants)
-    {
+
+    public boolean isItemExists(int id, int size){return model.isItemExists(id,size);}
+
+    public void addPants(Pants pants) {
         model.addPants(pants);
     }
-    public void addShoe(Shoe shoe)
-    {
+
+    public void addShoe(Shoe shoe) {
         model.addShoe(shoe);
     }
-    public void addShirt(Shirt shirt)
-    {
+
+    public void addShirt(Shirt shirt) {
         model.addShirt(shirt);
     }
 

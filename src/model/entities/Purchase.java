@@ -15,5 +15,4 @@ public class Purchase {
     private ArrayList<Item> item;
     private int price;
     private int shoppingRating;
-
 }

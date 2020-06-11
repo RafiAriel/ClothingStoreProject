@@ -13,8 +13,8 @@ public class ManagerController {
         this.model = new ManagerModel();
     }
 
-    public String ChangeHourlySalary(int workerId, double newSalary) {
-        return model.ChangeHourlySalary(workerId, newSalary);
+    public String changeHourlySalary(int workerId, int newSalary) {
+        return model.changeHourlySalary(workerId, newSalary);
     }
 
     public void addWorker(Worker w) {

@@ -69,7 +69,7 @@ public class StoreModel {
                     Shirt shirts = new Shirt(color, brand, gender,type, price, size, currentStock, baseStock, id, shirtsType);
                     items.add(shirts);
                     break;
-                case "pant":
+                case "pants":
                     Pants pants = new Pants(color, brand, gender,type, price, size, currentStock, baseStock, id, pantsType);
                     items.add(pants);
                     break;
@@ -115,7 +115,7 @@ public class StoreModel {
                         Shirt shirts = new Shirt(color, brand, gender,type, price, size, currentStock, baseStock, id, shirtsType);
                         items.add(shirts);
                         break;
-                    case "pant":
+                    case "pants":
                         Pants pants = new Pants(color, brand, gender,type, price, size, currentStock, baseStock, id, pantsType);
                         items.add(pants);
                         break;
@@ -217,7 +217,7 @@ public class StoreModel {
                         Shirt shirts = new Shirt(color, brand, gender, type, price, size, currentStock, baseStock, id, shirtsType);
                         items.add(shirts);
                         break;
-                    case "pant":
+                    case "pants":
                         Pants pants = new Pants(color, brand, gender,type, price, size, currentStock, baseStock, id, pantsType);
                         items.add(pants);
                         break;

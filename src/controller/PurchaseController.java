@@ -13,7 +13,6 @@ public class PurchaseController {
         this.model = new PurchaseModel();
     }
 
-
     public Purchase lastPurchase(int memId) {
         return model.lastPurchase(memId);
     }

@@ -17,7 +17,7 @@ public class MemberModel {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
                         " (?, ?, ?, ?);";
 
@@ -56,7 +56,7 @@ public class MemberModel {
             try {
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(DELETE_USERS_SQL);
                 System.out.println("Deletion was successfully");
@@ -85,6 +85,22 @@ public class MemberModel {
         }
         return false;
 
+    }
+
+    public Member searchMember(int id) {
+        int i;
+        ArrayList<Member> members = new ArrayList<>();
+        try {
+            members = StoreModel.getInstance().getClubMembers();
+            for (i = 0; i < members.size(); i++) {
+                if (Integer.valueOf(id) == (members.get(i).getId())) {
+                    return members.get(i);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void birthdayPointAuto() {
@@ -120,7 +136,7 @@ public class MemberModel {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
             String strUpdate = "update clubmembers set pointgained = pointgained +" + price + " where id =" + m.getId();

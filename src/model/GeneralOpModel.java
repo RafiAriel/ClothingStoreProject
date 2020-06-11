@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class GeneralOpModel {
-    public GeneralOpModel() {
-    }
-
-    public int averageSellingRate() {
+    public double averageSellingRate() {
         int i=1;
-        int sum=0;
+        double sum=0;
         ArrayList<Purchase> pur = new ArrayList<>();
         try {
             pur = StoreModel.getInstance().getAllPurchase();
@@ -27,7 +24,7 @@ public class GeneralOpModel {
 
     }
 
-    public int Login(int id, String password) {
+    public String Login(int id, String password) {
         int i;
         ArrayList<Worker> Workers = null;
         try {
@@ -36,21 +33,21 @@ public class GeneralOpModel {
             for (i = 0; i < Workers.size(); i++) {
                 if((Integer.valueOf(id) == Workers.get(i).getId() && Workers.get(i).getPassword().equals(password)))
                 {
-                    return Workers.get(i).getId();
+                    return Workers.get(i).getJobType();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-        return -1;
+        return "null";
     }
 
     public String isManager(int id, String password) {
-        int i;
+        String i;
         try {
             i = Login(id, password);
-            if(i == 1)
+            if(i.equals("manager"))
             {
                 return UUID.randomUUID().toString();
             }
@@ -63,8 +60,8 @@ public class GeneralOpModel {
 
     public String isWorker(int id, String password) {
         try {
-            int i = Login(id, password);
-            if(i != -1 && i != 1)
+            String i = Login(id, password);
+            if(i.equals("worker"))
             {
                 return UUID.randomUUID().toString();
             }

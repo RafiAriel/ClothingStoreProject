@@ -28,6 +28,8 @@ public class MemberController {
         return model.isExistsClubMember(id);
     }
 
+    public Member searchMember(int id){return model.searchMember(id);}
+
     public void birthdayPointAuto()
     {
         model.birthdayPointAuto();
