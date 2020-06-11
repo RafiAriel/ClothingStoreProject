@@ -3,20 +3,18 @@ import View.*;
 import model.*;
 import model.entities.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
-
-public class ItemController implements Controller {
+public class ItemController {
     ViewInterface viewInterface;
     model.ItemModel model;
 
     public ItemController(ViewInterface viewInterface, ItemModel model) {
         this.viewInterface = viewInterface;
         this.model = model;
+    }
+
+    public ItemController() {
+
     }
 
     public Item searchItem(int id, int size)

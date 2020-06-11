@@ -4,8 +4,9 @@ import model.entities.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class StoreModel implements Model {
+public class StoreModel {
     private static StoreModel db;
     private static Object LockObject = new Object();
     private StoreModel()
@@ -308,6 +309,8 @@ public class StoreModel implements Model {
 
     }
 
+
+
     public int Login(int id, String password) {
         int i;
         ArrayList<Worker> Workers = null;
@@ -327,31 +330,34 @@ public class StoreModel implements Model {
         return -1;
     }
 
-    public boolean isManager(int id, String password) {
+    public String  isManager(int id, String password) {
+        int i;
         try {
-            int i = Login(id, password);
+            i = Login(id, password);
             if(i == 1)
             {
-                return true;
+                return UUID.randomUUID().toString();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
-    public boolean isWorker(int id, String password) {
+
+
+    public String isWorker(int id, String password) {
         try {
             int i = Login(id, password);
             if(i != -1 && i != 1)
             {
-                return true;
+                return UUID.randomUUID().toString();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }
 

@@ -3,20 +3,18 @@ import View.*;
 import model.*;
 import model.entities.Member;
 
-import java.sql.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
 
-
-public class MemberController implements Controller {
+public class MemberController {
     ViewInterface viewInterface;
     model.MemberModel model;
 
     public MemberController(ViewInterface viewInterface, MemberModel model) {
         this.viewInterface = viewInterface;
         this.model = model;
+    }
+
+    public MemberController() {
+        
     }
 
     public void addClubMember(Member m)
@@ -34,9 +32,9 @@ public class MemberController implements Controller {
         return model.isExistsClubMember(id);
     }
 
-    public void BirthdayPointAuto()
+    public void birthdayPointAuto()
     {
-        model.BirthdayPointAuto();
+        model.birthdayPointAuto();
     }
 
     public void updateMembersPoints(int price, Member m)

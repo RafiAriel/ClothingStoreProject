@@ -3,17 +3,20 @@ import View.*;
 import model.*;
 import model.entities.*;
 
-import java.sql.*;
 import java.util.ArrayList;
 
 
-public class StoreController implements Controller {
+public class StoreController {
     ViewInterface viewInterface;
     model.StoreModel model;
 
     public StoreController(ViewInterface viewInterface, StoreModel model) {
         this.viewInterface = viewInterface;
         this.model = model;
+    }
+
+    public StoreController() {
+        
     }
 
 
@@ -54,14 +57,35 @@ public class StoreController implements Controller {
 
     public boolean isManager(int id, String password)
     {
-        return model.isManager(id, password);
-    }
+        String idString =String.valueOf(id);
+        if (idString == null || idString.trim().equals("") || password == null || password.trim().equals("")) {
+            throw new IllegalArgumentException("Username or password must not be null");
+        }
+        String session = model.isManager(id, password);
+        if (session != null) {
+            System.out.println("Session token: " + session);
+            return true;
+        }
 
+        return false;
+    }
 
     public boolean isWorker(int id, String password)
     {
-        return model.isWorker(id, password);
+        String idString =String.valueOf(id);
+        if (idString == null || idString.trim().equals("") || password == null || password.trim().equals("")) {
+            throw new IllegalArgumentException("Username or password must not be null");
+        }
+        String session = model.isWorker(id, password);
+        if (session != null) {
+            System.out.println("Session token: " + session);
+            return true;
+        }
+
+        return false;
     }
+
+
 
 
 }

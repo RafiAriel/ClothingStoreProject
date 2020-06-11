@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class WorkerModel implements Model {
+public class WorkerModel {
 
     public void addWorker(Worker w) {
         if (isExistsWorker(w.getId()) == false) {

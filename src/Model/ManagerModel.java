@@ -2,7 +2,7 @@ package model;
 
 import java.sql.*;
 
-public class ManagerModel extends  WorkerModel implements Model {
+public class ManagerModel extends  WorkerModel {
 
     public String ChangeHourlySalary(int workerId, double newSalary) {
         if (!isExistsWorker(workerId)) {

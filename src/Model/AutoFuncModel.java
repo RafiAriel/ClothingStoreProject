@@ -4,7 +4,7 @@ import model.entities.Item;
 
 import java.util.ArrayList;
 
-public class AutoFuncModel implements Model, Runnable {
+public class AutoFuncModel implements Runnable {
     public void checkCurrentStock() {
         int i;
 

@@ -3,11 +3,8 @@ import View.*;
 import model.*;
 import model.entities.Worker;
 
-import java.sql.*;
-import java.util.ArrayList;
 
-
-public class ManagerController implements Controller {
+public class ManagerController {
     ViewInterface viewInterface;
     model.ManagerModel model;
 
@@ -16,6 +13,9 @@ public class ManagerController implements Controller {
         this.model = model;
     }
 
+    public ManagerController() {
+
+    }
 
     public String ChangeHourlySalary(int workerId, double newSalary) {
         return model.ChangeHourlySalary(workerId, newSalary);

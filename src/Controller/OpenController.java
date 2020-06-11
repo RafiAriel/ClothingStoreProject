@@ -1,14 +1,18 @@
 package controller;
 
 import View.ViewInterface;
-import model.Model;
+import model.OpenModel;
 
-public class OpenController implements Controller {
+public class OpenController {
     ViewInterface viewInterface;
-    Model model;
+    OpenModel model;
 
-    public OpenController(ViewInterface viewInterface, Model model) {
+    public OpenController(ViewInterface viewInterface, OpenModel model) {
         this.viewInterface = viewInterface;
         this.model = model;
+    }
+
+    public OpenController() {
+
     }
 }

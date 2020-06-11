@@ -4,19 +4,18 @@ import model.*;
 import model.entities.Member;
 import model.entities.Purchase;
 
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
-
-public class PurchaseController implements Controller {
+public class PurchaseController {
     ViewInterface viewInterface;
     model.PurchaseModel model;
 
     public PurchaseController(ViewInterface viewInterface, PurchaseModel model) {
         this.viewInterface = viewInterface;
         this.model = model;
+    }
+
+    public PurchaseController() {
+
     }
 
 

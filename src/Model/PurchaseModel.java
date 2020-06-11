@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PurchaseModel implements Model {
+public class PurchaseModel {
 
     public Purchase lastPurchase(int memId) {
         int i;

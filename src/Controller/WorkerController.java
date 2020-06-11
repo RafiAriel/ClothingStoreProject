@@ -3,13 +3,17 @@ import View.*;
 import model.*;
 import model.entities.Worker;
 
-public class WorkerController implements Controller {
+public class WorkerController {
     ViewInterface viewInterface;
   model.WorkerModel model;
 
     public WorkerController(ViewInterface viewInterface, WorkerModel model) {
         this.viewInterface = viewInterface;
         this.model = model;
+    }
+
+    public WorkerController() {
+
     }
 
     public void addWorker(Worker w) {

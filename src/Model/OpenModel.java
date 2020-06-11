@@ -1,4 +1,4 @@
 package model;
 
-public class OpenModel implements Model {
+public class OpenModel {
 }

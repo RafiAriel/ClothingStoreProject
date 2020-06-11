@@ -3,7 +3,7 @@ import View.*;
 import model.*;
 
 
-public class AutoFuncController implements Controller {
+public class AutoFuncController {
     ViewInterface viewInterface;
     AutoFuncModel model;
 
@@ -11,8 +11,15 @@ public class AutoFuncController implements Controller {
         this.viewInterface = viewInterface;
         this.model = model;
     }
-    public void run()
+
+    public AutoFuncController() {
+
+    }
+
+
+    public void checkCurrentStockThread()
     {
         model.checkCurrentStockThread();
     }
+
 }

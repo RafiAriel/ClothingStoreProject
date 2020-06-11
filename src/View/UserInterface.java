@@ -1,27 +1,36 @@
 package View;
 
-import controller.AutoFuncController;
-import controller.Controller;
-import model.AutoFuncModel;
+import controller.*;
 import model.MemberModel;
 
 import java.util.Scanner;
 
 public class UserInterface implements ViewInterface, Runnable {
-    private Scanner input;
-    private Controller controller;
+    private AutoFuncController autoFuncController;
+    private ItemController itemController;
+    private ManagerController managerController;
+    private MemberController memberController;
+    private OpenController openController;
+    private PurchaseController purchaseController;
+    private StoreController storeController;
+    private WorkerController workerController;
+
+
+
     public UserInterface() {
-        input = new Scanner(System.in);
-        BirthDayCLI();
+
+        autoFuncController = new AutoFuncController();
+        itemController = new ItemController();
+        managerController = new ManagerController();
+        memberController = new MemberController();
+        openController = new OpenController();
+        purchaseController = new PurchaseController();
+        storeController = new StoreController();
+        workerController = new WorkerController();
+
 
 
     }
-
-    public void BirthDayCLI() {
-        MemberModel M = new MemberModel();
-        M.BirthdayPointAuto();
-    }
-
 
 
 
@@ -30,22 +39,17 @@ public class UserInterface implements ViewInterface, Runnable {
         new Thread(this).run();
     }
 
-    @Override
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
 
 
     public void run() {
 
         System.out.println("Welcome to the clothing store management system");
+        memberController
 
 
-    }
 
 
-    public void Rafi() {
-        System.out.println("Welcome to the clothing store management system");
+
 
     }
 }

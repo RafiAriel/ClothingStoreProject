@@ -8,7 +8,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MemberModel implements Model {
+public class MemberModel {
     public MemberModel() {
     }
 
@@ -88,10 +88,9 @@ public class MemberModel implements Model {
 
     }
 
-    public void BirthdayPointAuto() {
+    public void birthdayPointAuto() {
         int i;
-        Connection connection = null;
-        ArrayList<Member> clubMembers = null;
+        ArrayList<Member> clubMembers;
         try {
             clubMembers = new ArrayList<Member>();
             clubMembers = StoreModel.getInstance().getClubMembers();
@@ -100,16 +99,17 @@ public class MemberModel implements Model {
             int month = localDate.getMonthValue();
             int day   = localDate.getDayOfMonth();
             for (i = 0; i < clubMembers.size(); i++) {
-                String[] dateClubMembers = clubMembers.get(i).getDateOfBirth().split("/");
-                int dayMember = Integer.parseInt(dateClubMembers[0]);
-                int monthMember = Integer.parseInt(dateClubMembers[1]);
-                if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember))
-                {
-                    updateMembersPoints(250, clubMembers.get(i));
-                    System.out.println("System message: 250 credits added to club member" + clubMembers.get(i).getName() + ", id: " + clubMembers.get(i).getId());
+                String[] dateClubMember;
+                dateClubMember = clubMembers.get(i).getDateOfBirth().split("/");
+                    int dayMember = Integer.parseInt(dateClubMember[0]);
+                    int monthMember = Integer.parseInt(dateClubMember[1]);
+                    if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember)) {
+                        updateMembersPoints(250, clubMembers.get(i));
+                        System.out.println("System message: 250 credits added to club member" + clubMembers.get(i).getName() + ", id: " + clubMembers.get(i).getId());
+                    }
+
                 }
 
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

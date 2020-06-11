@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ItemModel implements Model{
+public class ItemModel {
 
     public Item searchItem(int id, int size) {
         int i;
