@@ -1,6 +1,6 @@
 package driver;
-import View.UserInterface;
-import View.ViewInterface;
+import view.UserInterface;
+import view.ViewInterface;
 import controller.OpenController;
 import model.OpenModel;
 
