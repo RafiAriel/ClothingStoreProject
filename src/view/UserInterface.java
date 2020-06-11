@@ -1,9 +1,6 @@
-package View;
+package view;
 
 import controller.*;
-import model.MemberModel;
-
-import java.util.Scanner;
 
 public class UserInterface implements ViewInterface, Runnable {
     private AutoFuncController autoFuncController;

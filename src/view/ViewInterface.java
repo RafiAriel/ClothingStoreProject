@@ -1,5 +1,5 @@
-package View;
-import controller.*;
+package view;
+
 public interface ViewInterface {
     void start();
 

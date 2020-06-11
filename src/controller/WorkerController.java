@@ -1,5 +1,5 @@
 package controller;
-import View.*;
+import view.*;
 import model.*;
 import model.entities.Worker;
 
