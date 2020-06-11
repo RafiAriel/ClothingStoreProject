@@ -11,7 +11,6 @@ import java.util.Date;
 public class MemberModel {
     public MemberModel() {
     }
-
     public void addClubMember(Member m) {
 
         if (isExistsClubMember(m.getId()) == false) {
@@ -136,8 +135,4 @@ public class MemberModel {
             }
         }
     }
-
-
-
-
 }

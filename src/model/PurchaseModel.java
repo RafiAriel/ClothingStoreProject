@@ -78,7 +78,6 @@ public class PurchaseModel {
 
     }
 
-
     public boolean updateStockMinus(Purchase pur) {
         int i, j;
         Connection connection = null;
@@ -117,6 +116,4 @@ public class PurchaseModel {
         }
         return true;
     }
-
-
 }
