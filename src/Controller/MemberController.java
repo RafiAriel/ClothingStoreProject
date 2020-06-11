@@ -14,7 +14,7 @@ public class MemberController {
     }
 
     public MemberController() {
-        
+
     }
 
     public void addClubMember(Member m)

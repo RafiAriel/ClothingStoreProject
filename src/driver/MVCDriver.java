@@ -7,7 +7,7 @@ import model.OpenModel;
 public class MVCDriver {
 
     public static void main(String[] args) {
-        UserInterface view = new UserInterface();
+        ViewInterface view = new UserInterface();
         view.start();
 
 

@@ -44,8 +44,7 @@ public class UserInterface implements ViewInterface, Runnable {
     public void run() {
 
         System.out.println("Welcome to the clothing store management system");
-        memberController
-
+        memberController.birthdayPointAuto();
 
 
 
