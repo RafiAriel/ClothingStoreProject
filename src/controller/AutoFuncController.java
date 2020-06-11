@@ -15,7 +15,7 @@ public class AutoFuncController {
     public AutoFuncController() {
 
     }
-//hellooooooo
+
     public void checkCurrentStockThread()
     {
         model.checkCurrentStockThread();
