@@ -7,23 +7,14 @@ import java.util.ArrayList;
 
 
 public class StoreController {
-    ViewInterface viewInterface;
-    model.StoreModel model;
 
-    public StoreController(ViewInterface viewInterface, StoreModel model) {
-        this.viewInterface = viewInterface;
-        this.model = model;
-    }
+    protected model.StoreModel model;
 
     public StoreController() {
-        
     }
 
 
-    public static StoreModel getInstance()
-    {
-        return StoreModel.getInstance();
-    }
+
     public static ArrayList<Purchase> getAllPurchase()
     {
         return StoreModel.getAllPurchase();
@@ -44,6 +35,10 @@ public class StoreController {
         return StoreModel.getWorkers();
     }
 
+
+
+
+
     public int averageSellingRate()
     {
         return model.averageSellingRate();
@@ -54,9 +49,7 @@ public class StoreController {
         return model.Login(id, password);
     }
 
-
-    public boolean isManager(int id, String password)
-    {
+    public boolean isManager(int id, String password) {
         String idString =String.valueOf(id);
         if (idString == null || idString.trim().equals("") || password == null || password.trim().equals("")) {
             throw new IllegalArgumentException("Username or password must not be null");
@@ -70,8 +63,7 @@ public class StoreController {
         return false;
     }
 
-    public boolean isWorker(int id, String password)
-    {
+    public boolean isWorker(int id, String password){
         String idString =String.valueOf(id);
         if (idString == null || idString.trim().equals("") || password == null || password.trim().equals("")) {
             throw new IllegalArgumentException("Username or password must not be null");
@@ -84,8 +76,4 @@ public class StoreController {
 
         return false;
     }
-
-
-
-
 }

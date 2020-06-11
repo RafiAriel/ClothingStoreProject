@@ -4,16 +4,11 @@ import model.*;
 
 
 public class AutoFuncController {
-    ViewInterface viewInterface;
-    AutoFuncModel model;
 
-    public AutoFuncController(ViewInterface viewInterface, AutoFuncModel model) {
-        this.viewInterface = viewInterface;
-        this.model = model;
-    }
+    protected AutoFuncModel model;
 
     public AutoFuncController() {
-
+        this.model = new AutoFuncModel();
     }
 
     public void checkCurrentStockThread()

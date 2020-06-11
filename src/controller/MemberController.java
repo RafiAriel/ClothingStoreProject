@@ -5,16 +5,12 @@ import model.entities.Member;
 
 
 public class MemberController {
-    ViewInterface viewInterface;
-    model.MemberModel model;
 
-    public MemberController(ViewInterface viewInterface, MemberModel model) {
-        this.viewInterface = viewInterface;
-        this.model = model;
-    }
+    protected model.MemberModel model;
+
 
     public MemberController() {
-
+        this.model = new MemberModel();
     }
 
     public void addClubMember(Member m)

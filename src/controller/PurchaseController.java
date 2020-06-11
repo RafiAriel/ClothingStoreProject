@@ -6,16 +6,11 @@ import model.entities.Purchase;
 
 
 public class PurchaseController {
-    ViewInterface viewInterface;
-    model.PurchaseModel model;
 
-    public PurchaseController(ViewInterface viewInterface, PurchaseModel model) {
-        this.viewInterface = viewInterface;
-        this.model = model;
-    }
+    protected model.PurchaseModel model;
 
     public PurchaseController() {
-
+        this.model = new PurchaseModel();
     }
 
 

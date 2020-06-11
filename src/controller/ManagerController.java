@@ -5,16 +5,12 @@ import model.entities.Worker;
 
 
 public class ManagerController {
-    ViewInterface viewInterface;
-    model.ManagerModel model;
 
-    public ManagerController(ViewInterface viewInterface, ManagerModel model) {
-        this.viewInterface = viewInterface;
-        this.model = model;
-    }
+    protected model.ManagerModel model;
+
 
     public ManagerController() {
-
+        this.model = new ManagerModel();
     }
 
     public String ChangeHourlySalary(int workerId, double newSalary) {
