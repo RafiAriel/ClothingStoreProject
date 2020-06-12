@@ -34,7 +34,7 @@ public class StoreModel {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -148,7 +148,7 @@ public class StoreModel {
             ClubMembers = new ArrayList<Member>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -190,7 +190,7 @@ public class StoreModel {
 
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();
@@ -250,7 +250,7 @@ public class StoreModel {
             Workers = new ArrayList<>();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             // Step 2:Create a statement using connection object
             Statement stmt = connection.createStatement();

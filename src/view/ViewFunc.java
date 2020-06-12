@@ -296,4 +296,12 @@ public class ViewFunc{
         System.out.println("action succeeded!");
     }
 
+    public void birthDayAuto()
+    {
+        memberController.birthdayPointAuto();
+    }
+    public void autoFunc()
+    {
+        autoFuncController.checkCurrentStockTimerRunning();
+    }
 }

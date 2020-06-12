@@ -15,6 +15,8 @@ public class UserInterface implements Runnable {
 
     @Override
     public void run() {
+        viewFunc.birthDayAuto();
+        viewFunc.autoFunc();
         for(int i=1;i<=3;i++) {
             String str = viewFunc.login();
             if (str.equals( "manager")) {
@@ -25,7 +27,7 @@ public class UserInterface implements Runnable {
                 workerScreen();
                 return;
             }
-            if (str.equals( "none"))
+            if (str.equals("none"))
                 System.out.println("try again! **num "+i+" (at the third try the program will close!)");
         }
         System.out.println("you should remember your password for the next time...");
