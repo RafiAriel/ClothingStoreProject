@@ -16,7 +16,6 @@ public class UserInterface implements Runnable {
     @Override
     public void run() {
         viewFunc.birthDayAuto();
-        viewFunc.autoFunc();
         for(int i=1;i<=3;i++) {
             String str = viewFunc.login();
             if (str.equals( "manager")) {
@@ -35,6 +34,7 @@ public class UserInterface implements Runnable {
 
     public void workerScreen()
     {
+        viewFunc.autoFunc();
         Scanner s = new Scanner(System.in);
         while(true) {
         System.out.println("Hello Worker!!");
@@ -80,6 +80,7 @@ public class UserInterface implements Runnable {
 
     public void managerScreen()
     {
+        viewFunc.autoFunc();
         Scanner s = new Scanner(System.in);
         while(true) {
             System.out.println("Hello Manager!!");
