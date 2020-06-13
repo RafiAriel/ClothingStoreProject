@@ -6,21 +6,47 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTest {
+    GeneralOpController generalOpController;
+    private final static int MOCK_NEGATIVE = -1;
+    private final static int MOCK_ZERO = 0;
+    private final static int MOCK_POSITIVE = 1;
+
+    @BeforeEach
+    public void setUp()
+    {
+       generalOpController = new GeneralOpController();
+    }
+
 
     @Test
-    public void failLoginEmptyIdTestManager()
+    public void failLoginNegativeIdTestManager()
     {
-        GeneralOpController generalOpController = new GeneralOpController();
         try {
-            generalOpController.isManager(-1, "1234");
+            generalOpController.isManager(MOCK_NEGATIVE, "1234");
             fail("Login succeed when should failed");
         }
         catch (IllegalArgumentException e)
         {
-            Assertions.assertEquals("id or password must not be null", e.getMessage());
+            Assertions.assertEquals("id or password must not be null or wrong", e.getMessage());
+
+        }
+
+    }
+
+    @Test
+    public void failLoginZeroIdTestManager()
+    {
+        try {
+            generalOpController.isManager(MOCK_ZERO, "1234");
+            fail("Login succeed when should failed");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assertions.assertEquals("id or password must not be null or wrong", e.getMessage());
 
         }
     }
@@ -28,30 +54,42 @@ public class LoginTest {
     @Test
     public void failLoginEmptyPasswordTestManager()
     {
-        GeneralOpController generalOpController = new GeneralOpController();
         try {
-            generalOpController.isManager(12, "");
+            generalOpController.isManager(MOCK_POSITIVE, "");
             fail("Login succeed when should failed");
         }
         catch (IllegalArgumentException e)
         {
-            Assertions.assertEquals("id or password must not be null", e.getMessage());
+            Assertions.assertEquals("id or password must not be null or wrong", e.getMessage());
 
         }
     }
 
 
     @Test
-    public void failLoginEmptyIdTestWorker()
+    public void loginSucceedTestManager()
     {
-        GeneralOpController generalOpController = new GeneralOpController();
+        boolean checkTrue = generalOpController.isManager(12, "1234");
+        assertTrue(checkTrue);
+        boolean checkFalse = generalOpController.isManager(1, "1111");
+        assertFalse(checkFalse);
+
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    @Test
+    public void failLoginNegativeIdTestWorker()
+    {
         try {
-            generalOpController.isWorker(-1, "1234");
+            generalOpController.isWorker(MOCK_NEGATIVE, "1234");
             fail("Login succeed when should failed");
         }
         catch (IllegalArgumentException e)
         {
-            Assertions.assertEquals("id or password must not be null", e.getMessage());
+            Assertions.assertEquals("id or password must not be null or wrong", e.getMessage());
 
         }
     }
@@ -60,17 +98,43 @@ public class LoginTest {
     @Test
     public void failLoginEmptyPasswordTestWorker()
     {
-        GeneralOpController generalOpController = new GeneralOpController();
         try {
-            generalOpController.isManager(1, "");
+            generalOpController.isWorker(MOCK_POSITIVE, "");
             fail("Login succeed when should failed");
         }
         catch (IllegalArgumentException e)
         {
-            Assertions.assertEquals("id or password must not be null", e.getMessage());
+            Assertions.assertEquals("id or password must not be null or wrong", e.getMessage());
 
         }
     }
+
+    @Test
+    public void failLoginZeroIdTestWorker()
+    {
+        try {
+            generalOpController.isWorker(MOCK_ZERO, "1234");
+            fail("Login succeed when should failed");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assertions.assertEquals("id or password must not be null or wrong", e.getMessage());
+
+        }
+    }
+
+    @Test
+    public void loginSucceedTestWorker()
+    {
+        boolean checkTrue = generalOpController.isWorker(10, "0404");
+        assertTrue(checkTrue);
+        boolean checkFalse = generalOpController.isWorker(1, "1111");
+        assertFalse(checkFalse);
+    }
+
+
+
+
 
 
 }

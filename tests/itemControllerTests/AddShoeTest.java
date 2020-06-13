@@ -1,4 +1,4 @@
 package itemControllerTests;
 
-public class searchItemTest {
+public class AddShoeTest {
 }

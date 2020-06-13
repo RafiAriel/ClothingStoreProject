@@ -46,9 +46,9 @@ public class GeneralOpModel {
     public String isManager(int id, String password) {
         String i;
 
-        if(id < 0 || password == null || password.trim().equals(""))
+        if(id <= 0 || password == null || password.trim().equals(""))
         {
-            throw new IllegalArgumentException("id or password must not be null");
+            throw new IllegalArgumentException("id or password must not be null or wrong");
         }
 
         try {
@@ -66,9 +66,9 @@ public class GeneralOpModel {
 
     public String isWorker(int id, String password) {
 
-        if( id < 0 || password == null || password.trim().equals(""))
+        if( id <= 0 || password == null || password.trim().equals(""))
         {
-            throw new IllegalArgumentException("id or password must not be null");
+            throw new IllegalArgumentException("id or password must not be null or wrong");
         }
 
         try {

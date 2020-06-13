@@ -12,7 +12,7 @@ public class Member extends Person{
 
     public Member() {
         super();
-        this.pointsGained = -1;
+        this.pointsGained = 0;
     }
 
     public Member(String name, String dateOfBirth, int id, int pointsGained) {

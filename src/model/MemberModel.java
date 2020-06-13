@@ -12,6 +12,10 @@ public class MemberModel {
     public MemberModel() {
     }
     public void addClubMember(Member m) {
+        if(m.getName().trim().equals("") || (m.getId() <= 0) || m.getPointsGained() < 0 || m.getDateOfBirth().trim().equals(""))
+        {
+            throw new IllegalArgumentException("name or id or pointsgaind or dateofbirth must not be null or wrong");
+        }
 
         if (isExistsClubMember(m.getId()) == false) {
             Connection connection = null;

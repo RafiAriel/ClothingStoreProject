@@ -21,7 +21,7 @@ public class GeneralOpController {
     }
 
     public boolean isManager(int id, String password) {
-        String idString =String.valueOf(id);
+
         String session = model.isManager(id, password);
         if (session != null) {
             return true;
@@ -30,7 +30,6 @@ public class GeneralOpController {
     }
 
     public boolean isWorker(int id, String password){
-        String idString =String.valueOf(id);
         String session = model.isWorker(id, password);
         if (session != null) {
             return true;

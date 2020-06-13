@@ -11,6 +11,14 @@ import java.util.Date;
 public class PurchaseModel {
 
     public Purchase lastPurchase(int memId) {
+        if(memId < 0)
+        {
+            throw new IllegalArgumentException("id must not be negative");
+        }
+        if(memId == 0)
+        {
+            throw new IllegalArgumentException("id must not be zero");
+        }
         int i;
         ArrayList<Purchase> pur = new ArrayList<>();
         try {
@@ -27,6 +35,19 @@ public class PurchaseModel {
     }
 
     public String selling(Purchase pur) {
+        if(pur.getClubMember().getName().equals("valueless") || pur.getClubMember().getDateOfBirth().equals("-1") || pur.getClubMember().getId() < 0 || pur.getClubMember().getPointsGained() < 0)
+        {
+            throw new IllegalArgumentException("name or id or pointsgaind or dateofbirth must not be null or wrong");
+        }
+        if(pur.getItem().isEmpty())
+        {
+            throw new IllegalArgumentException("The Array list Items must not be null or empty");
+        }
+        if(pur.getPrice() < 0 || pur.getShoppingRating() < 0)
+        {
+            throw new IllegalArgumentException("the price or shoppingRating must not be negative");
+        }
+
         MemberModel memMod = new MemberModel();
         ItemModel itemModel = new ItemModel();
 
