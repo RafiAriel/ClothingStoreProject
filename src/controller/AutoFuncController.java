@@ -11,7 +11,7 @@ public class AutoFuncController {
         this.model = new AutoFuncModel();
     }
 
-    public void checkCurrentStockTimerRunning()
+    public void checkCurrentStock()
     {
         model.runCheckCurrentStock();
     }

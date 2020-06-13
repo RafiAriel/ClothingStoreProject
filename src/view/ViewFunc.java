@@ -302,6 +302,6 @@ public class ViewFunc{
     }
     public void autoFunc()
     {
-        autoFuncController.checkCurrentStockTimerRunning();
+        autoFuncController.checkCurrentStock();
     }
 }
