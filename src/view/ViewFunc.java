@@ -91,7 +91,6 @@ public class ViewFunc{
         int gainedPoints = 0;
         Member m = new Member(name,birthday,id,gainedPoints);
         memberController.addClubMember(m);
-
     }
 
     public void deleteClubMember(){
@@ -153,7 +152,7 @@ public class ViewFunc{
         System.out.println("enter member id: ");
         int id = s.nextInt();
         Purchase p = purchaseController.lastPurchase(id);
-        if(p == null)
+        if(p==null)
         {
             System.out.println("the member is not exist or he didn't bought something in the store!");
             return;
@@ -266,9 +265,6 @@ public class ViewFunc{
                 itemController.addShoe(shoe);
                 break;
         }
-
-
-
     }
 
     public void changeHourlySalary() {
@@ -299,15 +295,6 @@ public class ViewFunc{
 
         Worker w = new Worker(name, birthday, id, hourlySalary,numHourMonth,jobType,pass );
         managerController.addWorker(w);
-
     }
 
-    public void birthDayAuto()
-    {
-        memberController.birthdayPointAuto();
-    }
-    public void autoFunc()
-    {
-        autoFuncController.checkCurrentStock();
-    }
 }

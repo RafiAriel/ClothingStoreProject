@@ -15,7 +15,7 @@ public class WorkerModel {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 String INSERT_USERS_SQL = "INSERT INTO workers" + "  (name, id, dateofbirth, hourlysalary, numHourMonth, jobType, password) VALUES " +
                         " (?, ?, ?, ?, ?, ?, ?);";
 
@@ -40,19 +40,13 @@ public class WorkerModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
+                System.out.println("action succeeded!");
             }
-
-            System.out.println("action succeeded!");
-
-        }
-        else {
-            System.out.println("the item is already exists!");
-
+        } else {
+            System.out.println("the worker is already exists!");
         }
 
-        }
-
+    }
 
     public String watchMonthlySalary(int workerId) {
 

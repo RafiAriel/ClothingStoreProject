@@ -78,12 +78,12 @@ public class ItemModel {
     }
 
     public void addPants(Pants pants) {
-        if (!isItemExists(pants.getItemId(), pants.getSize())) {
 
+        if (!isItemExists(pants.getItemId(), pants.getSize())) {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 String INSERT_USERS_SQL = "INSERT INTO items" + "  (itemid, color, price, type, size, brand, gender, drawstringcolor, pantstype, shirtstype, basestock, currentStock) VALUES " +
                         " (?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
 
@@ -115,24 +115,21 @@ public class ItemModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+
             }
             System.out.println("action succeeded!");
-
-        }
-        else {
+        } else {
             System.out.println("the item is already exists!");
-
-        }
         }
 
-
+    }
 
     public void addShoe(Shoe shoe) {
         if (!isItemExists(shoe.getItemId(), shoe.getSize())) {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 String INSERT_USERS_SQL = "INSERT INTO items" + "  (itemid, color, price, type, size, brand, gender, drawstringcolor, pantstype, shirtstype, basestock, currentStock) VALUES " +
                         " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -164,24 +161,20 @@ public class ItemModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                System.out.println("action succeeded!");
             }
-
-            System.out.println("action succeeded!");
-        }
-        else {
+        } else {
             System.out.println("the item is already exists!");
-
         }
-            }
-
-
+    }
 
     public void addShirt(Shirt shirt) {
+
         if (!isItemExists(shirt.getItemId(), shirt.getSize())) {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 String INSERT_USERS_SQL = "INSERT INTO items" + "  (itemid, color, price, type, size, brand, gender, drawstringcolor, pantstype, shirtstype, basestock, currentStock) VALUES " +
                         " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -214,19 +207,12 @@ public class ItemModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+             System.out.println("action succeeded!");
             }
-            System.out.println("action succeeded!");
-        }
-        else {
+        } else {
             System.out.println("the item is already exists!");
-
-
         }
-            }
-
-
-
-
-
     }
+
+}
 

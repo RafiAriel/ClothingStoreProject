@@ -3,14 +3,8 @@ package model;
 import model.entities.Item;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import static java.lang.Thread.sleep;
-
-public class AutoFuncModel {
-
+public class AutoFuncModel implements Runnable {
 
     public void checkCurrentStock() {
         int i;
@@ -29,17 +23,24 @@ public class AutoFuncModel {
         }
     }
 
-   public void runCheckCurrentStock()
-   {
-       TimerTask task = new TimerTask() {
+    @Override
+    public void run() {
+        checkCurrentStock();
+    }
 
-           @Override
-           public void run() {
-               checkCurrentStock();
-           }
-       };
+    public void checkCurrentStockThread() {
+        int i;
+        try {
+            Runnable runnable = new AutoFuncModel();
+            Thread t1 = new Thread(runnable);
+            for (i = 144; i > 0; i--) { // 10 minutes loop, All day long
+                t1.run();
+                Thread.sleep(6000000); // 10 Minutes
+            }
 
-       Timer timer = new Timer();
-       timer.schedule(task, new Date(), 300000);
-   }
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted.");
+        }
+
+    }
 }

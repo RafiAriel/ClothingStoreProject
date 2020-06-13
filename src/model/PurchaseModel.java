@@ -31,7 +31,7 @@ public class PurchaseModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-      return null;
+        return null;
     }
 
     public String selling(Purchase pur) {
@@ -63,7 +63,7 @@ public class PurchaseModel {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {
@@ -106,7 +106,7 @@ public class PurchaseModel {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {
