@@ -126,7 +126,7 @@ public class MemberModel {
                     int monthMember = Integer.parseInt(dateClubMember[1]);
                     if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember)) {
                         updateMembersPoints(250, clubMembers.get(i));
-                        System.out.println("System message: 250 credits added to club member" + clubMembers.get(i).getName() + ", id: " + clubMembers.get(i).getId());
+                        System.out.println("System message: 250 credits added to club member " + clubMembers.get(i).getName() + ", id: " + clubMembers.get(i).getId());
                     }
 
                 }
