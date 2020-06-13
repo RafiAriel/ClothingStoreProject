@@ -48,7 +48,7 @@ public class ViewFunc{
         System.out.println("enter the size: ");
         size = s.nextInt();
         Item item = itemController.searchItem(id, size);
-        if(itemController.isItemExists(id,size))
+        if(!itemController.isItemExists(id,size))
             System.out.println("the product does not exist");
         else if (item.getItemId()<0)
             System.out.println("the product doesn't in stock!");
@@ -90,7 +90,7 @@ public class ViewFunc{
         int gainedPoints = 0;
         Member m = new Member(name,birthday,id,gainedPoints);
         memberController.addClubMember(m);
-        System.out.println("action succeeded!");
+
     }
 
     public void deleteClubMember(){
@@ -152,6 +152,11 @@ public class ViewFunc{
         System.out.println("enter member id: ");
         int id = s.nextInt();
         Purchase p = purchaseController.lastPurchase(id);
+        if(p == null)
+        {
+            System.out.println("the member is not exist or he didn't bought something in the store!");
+            return;
+        }
         for (int i = 0; i < p.getItem().size(); i++) {
             temp = i + 1;
             System.out.println("item number: " + temp);
@@ -293,7 +298,7 @@ public class ViewFunc{
 
         Worker w = new Worker(name, birthday, id, hourlySalary,numHourMonth,jobType,pass );
         managerController.addWorker(w);
-        System.out.println("action succeeded!");
+
     }
 
     public void birthDayAuto()

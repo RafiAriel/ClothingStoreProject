@@ -78,49 +78,57 @@ public class ItemModel {
     }
 
     public void addPants(Pants pants) {
+        if (!isItemExists(pants.getItemId(), pants.getSize())) {
 
-
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
-            String INSERT_USERS_SQL = "INSERT INTO items" + "  (itemid, color, price, type, size, brand, gender, drawstringcolor, pantstype, shirtstype, basestock, currentStock) VALUES " +
-                    " (?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
-
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
-            connection.setAutoCommit(false);
-            preparedStatement.setInt(1, pants.getItemId());
-            preparedStatement.setString(2, pants.getColor());
-            preparedStatement.setInt(3, pants.getPrice());
-            preparedStatement.setString(4, pants.getType());
-            preparedStatement.setInt(5, pants.getSize());
-            preparedStatement.setString(6, pants.getBrand());
-            preparedStatement.setString(7, pants.getGender());
-            preparedStatement.setString(8, "null");
-            preparedStatement.setString(9, pants.getPantsType());
-            preparedStatement.setString(10, "null");
-            preparedStatement.setInt(11, pants.getBaseStock());
-            preparedStatement.setInt(12, pants.getCurrentStock());
-            preparedStatement.addBatch();
-            int[] updateCounts = preparedStatement.executeBatch();
-            connection.commit();
-            connection.setAutoCommit(true);
-
-
-        } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
+            Connection connection = null;
             try {
-                connection.close();
-            } catch (SQLException e) {
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                String INSERT_USERS_SQL = "INSERT INTO items" + "  (itemid, color, price, type, size, brand, gender, drawstringcolor, pantstype, shirtstype, basestock, currentStock) VALUES " +
+                        " (?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
+
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+                connection.setAutoCommit(false);
+                preparedStatement.setInt(1, pants.getItemId());
+                preparedStatement.setString(2, pants.getColor());
+                preparedStatement.setInt(3, pants.getPrice());
+                preparedStatement.setString(4, pants.getType());
+                preparedStatement.setInt(5, pants.getSize());
+                preparedStatement.setString(6, pants.getBrand());
+                preparedStatement.setString(7, pants.getGender());
+                preparedStatement.setString(8, "null");
+                preparedStatement.setString(9, pants.getPantsType());
+                preparedStatement.setString(10, "null");
+                preparedStatement.setInt(11, pants.getBaseStock());
+                preparedStatement.setInt(12, pants.getCurrentStock());
+                preparedStatement.addBatch();
+                int[] updateCounts = preparedStatement.executeBatch();
+                connection.commit();
+                connection.setAutoCommit(true);
+
+
+            } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
+            System.out.println("action succeeded!");
 
         }
+        else {
+            System.out.println("the item is already exists!");
 
-    }
+        }
+        }
+
+
 
     public void addShoe(Shoe shoe) {
+        if (!isItemExists(shoe.getItemId(), shoe.getSize())) {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -137,7 +145,7 @@ public class ItemModel {
                 preparedStatement.setInt(5, shoe.getSize());
                 preparedStatement.setString(6, shoe.getBrand());
                 preparedStatement.setString(7, shoe.getGender());
-                preparedStatement.setString(8,shoe.getDrawstringColor());
+                preparedStatement.setString(8, shoe.getDrawstringColor());
                 preparedStatement.setString(9, "null");
                 preparedStatement.setString(10, "null");
                 preparedStatement.setInt(11, shoe.getBaseStock());
@@ -156,13 +164,20 @@ public class ItemModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
             }
 
+            System.out.println("action succeeded!");
         }
+        else {
+            System.out.println("the item is already exists!");
+
+        }
+            }
+
+
 
     public void addShirt(Shirt shirt) {
-
+        if (!isItemExists(shirt.getItemId(), shirt.getSize())) {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -181,7 +196,7 @@ public class ItemModel {
                 preparedStatement.setString(7, shirt.getGender());
                 preparedStatement.setString(8, "null");
                 preparedStatement.setString(9, "null");
-                preparedStatement.setString(10,shirt.getShirtType());
+                preparedStatement.setString(10, shirt.getShirtType());
                 preparedStatement.setInt(11, shirt.getBaseStock());
                 preparedStatement.setInt(12, shirt.getCurrentStock());
 
@@ -199,7 +214,14 @@ public class ItemModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+            }
+            System.out.println("action succeeded!");
+        }
+        else {
+            System.out.println("the item is already exists!");
 
+
+        }
             }
 
 
@@ -207,4 +229,4 @@ public class ItemModel {
 
 
     }
-}
+

@@ -43,8 +43,16 @@ public class WorkerModel {
 
             }
 
+            System.out.println("action succeeded!");
+
         }
-    }
+        else {
+            System.out.println("the item is already exists!");
+
+        }
+
+        }
+
 
     public String watchMonthlySalary(int workerId) {
 

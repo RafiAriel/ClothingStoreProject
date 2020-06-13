@@ -43,7 +43,11 @@ public class MemberModel {
                 }
 
             }
-
+            System.out.println("action succeeded!");
+        }
+        else
+        {
+            System.out.println("the member is already exists!");
         }
     }
 
@@ -64,6 +68,8 @@ public class MemberModel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            System.out.println("action succeed!");
 
         } else {
             System.out.println("Unable to delete, no such user in the system");

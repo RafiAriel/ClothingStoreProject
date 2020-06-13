@@ -23,8 +23,7 @@ public class PurchaseModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Purchase p = new Purchase();
-        return p;
+      return null;
     }
 
     public String selling(Purchase pur) {
