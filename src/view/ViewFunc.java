@@ -16,6 +16,16 @@ public class ViewFunc{
     private WorkerController workerController;
     private GeneralOpController generalOpController;
 
+    public void birthDayAuto()
+    {
+        memberController.birthdayPointAuto();
+    }
+
+    public void autoFunc()
+    {
+        autoFuncController.checkCurrentStock();
+    }
+
     public ViewFunc() {
         autoFuncController = new AutoFuncController();
         itemController = new ItemController();

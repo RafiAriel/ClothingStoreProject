@@ -7,6 +7,5 @@ public class MVCDriver {
         UserInterface view = new UserInterface();
         view.start();
     }
-
 }
 

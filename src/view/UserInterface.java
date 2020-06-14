@@ -15,6 +15,7 @@ public class UserInterface implements Runnable {
 
     @Override
     public void run() {
+        int i=1;
         while (true){
             String str = viewFunc.login();
             if (str.equals( "manager")) {
@@ -26,7 +27,14 @@ public class UserInterface implements Runnable {
 
             }
             if (str.equals("none")) {
-                System.out.println("try again");
+                if (i==3) {
+                    System.out.println("mistake number "+i+"/3");
+                    System.out.println("the program closes");
+                    return;
+                }
+                System.out.println("username or password are - try again!");
+                System.out.println("mistake number "+i+"/3");
+                i++;
             }
         }
 
