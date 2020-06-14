@@ -6,7 +6,7 @@ import model.entities.Worker;
 
 public class ManagerController {
 
-    protected model.ManagerModel model;
+    protected ManagerModel model;
 
 
     public ManagerController() {

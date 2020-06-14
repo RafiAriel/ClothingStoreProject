@@ -6,16 +6,16 @@ import model.entities.Member;
 
 public class MemberController {
 
-    protected model.MemberModel model;
+    protected MemberModel model;
 
 
     public MemberController() {
         this.model = new MemberModel();
     }
 
-    public void addClubMember(Member m)
+    public boolean addClubMember(Member m)
     {
-        model.addClubMember(m);
+       return model.addClubMember(m);
     }
 
     public void deleteClubMember(int id)

@@ -7,7 +7,7 @@ import model.entities.Purchase;
 
 public class PurchaseController {
 
-    protected model.PurchaseModel model;
+    protected PurchaseModel model;
 
     public PurchaseController() {
         this.model = new PurchaseModel();

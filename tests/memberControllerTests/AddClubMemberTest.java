@@ -23,6 +23,7 @@ public class AddClubMemberTest {
     private final static Member MOCK_MEMBER_WITHOUTID = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_NEGATIVE, MOCK_POINTSGAINED);
     private final static Member MOCK_MEMBER_WITHOUTIDOTHER = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_ZERO, MOCK_POINTSGAINED);
     private final static Member MOCK_MEMBER_WITHOUTPOINTSGAINED = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_ZERO, MOCK_NEGATIVE);
+    private final static Member MOCK_MEMBER_EXIST = new Member("Yuval", "30/2/1999",1, 4534);
 
 
     @BeforeEach
@@ -93,17 +94,30 @@ public class AddClubMemberTest {
     }
 
     @Test
-    public void failAddPointsGainedTest()
-    {
+    public void failAddPointsGainedTest() {
         try {
             memberController.addClubMember(MOCK_MEMBER_WITHOUTPOINTSGAINED);
             fail("The addition succeed when should failed");
-        }
-        catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             Assertions.assertEquals("name or id or pointsgaind or dateofbirth must not be null or wrong", e.getMessage());
 
         }
+    }
+
+
+        @Test
+        public void failAddClubMemberTest()
+        {
+            try {
+                memberController.addClubMember(MOCK_MEMBER_EXIST);
+                fail("The addition succeed when should failed");
+            }
+            catch (IllegalArgumentException e)
+            {
+                Assertions.assertEquals("the member is exist", e.getMessage());
+
+            }
+
 
     }
 

@@ -6,7 +6,7 @@ import model.entities.*;
 
 public class ItemController {
 
-    protected model.ItemModel model;
+    protected ItemModel model;
 
     public ItemController() {
         this.model = new ItemModel();

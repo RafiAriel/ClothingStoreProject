@@ -92,6 +92,7 @@ public class ViewFunc{
 
     public void addClubMember(){
         Scanner s = new Scanner(System.in);
+        boolean a;
         System.out.println("enter member's name: ");
         String name = s.next();
         System.out.println("enter birthday: ");
@@ -100,7 +101,11 @@ public class ViewFunc{
         int id = s.nextInt();
         int gainedPoints = 0;
         Member m = new Member(name,birthday,id,gainedPoints);
-        memberController.addClubMember(m);
+        a = memberController.addClubMember(m);
+        if(a == true)
+        {
+            System.out.println("action succeed");
+        }
     }
 
     public void deleteClubMember(){

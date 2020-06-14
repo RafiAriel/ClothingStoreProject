@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class StoreController {
 
-    protected model.StoreModel model;
+    protected StoreModel model;
 
     public StoreController() {
     }

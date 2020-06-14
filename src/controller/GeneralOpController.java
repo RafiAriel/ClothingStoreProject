@@ -4,7 +4,7 @@ import model.*;
 import model.entities.*;
 
 public class GeneralOpController {
-    protected model.GeneralOpModel model;
+    protected GeneralOpModel model;
 
     public GeneralOpController() {
         this.model = new model.GeneralOpModel();

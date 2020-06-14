@@ -5,7 +5,7 @@ import model.entities.Worker;
 
 public class WorkerController {
 
-  model.WorkerModel model;
+  WorkerModel model;
 
     public WorkerController() {
         this.model = new WorkerModel();

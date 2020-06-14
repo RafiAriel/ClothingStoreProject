@@ -11,17 +11,20 @@ import java.util.Date;
 public class MemberModel {
     public MemberModel() {
     }
-    public void addClubMember(Member m) {
+    public boolean addClubMember(Member m) {
         if(m.getName().trim().equals("") || (m.getId() <= 0) || m.getPointsGained() < 0 || m.getDateOfBirth().trim().equals(""))
         {
             throw new IllegalArgumentException("name or id or pointsgaind or dateofbirth must not be null or wrong");
         }
 
-        if (isExistsClubMember(m.getId()) == false) {
+        if (isExistsClubMember(m.getId()) == true) {
+            throw new IllegalArgumentException("the member is exist");
+        }
+
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
                         " (?, ?, ?, ?);";
 
@@ -47,11 +50,8 @@ public class MemberModel {
                 }
 
             }
-            System.out.println("action succeeded!");
-        }
-        else {
-            System.out.println("the member is already exists!");
-        }
+            return true;
+
     }
 
     public void deleteClubMember(int id) {
@@ -62,7 +62,7 @@ public class MemberModel {
             try {
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(DELETE_USERS_SQL);
                 System.out.println("Deletion was successfully");
@@ -142,7 +142,7 @@ public class MemberModel {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
             String strUpdate = "update clubmembers set pointgained = pointgained +" + price + " where id =" + m.getId();
