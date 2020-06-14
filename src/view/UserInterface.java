@@ -15,20 +15,21 @@ public class UserInterface implements Runnable {
 
     @Override
     public void run() {
-        for(int i=1;i<=3;i++) {
+        while (true){
             String str = viewFunc.login();
             if (str.equals( "manager")) {
                 managerScreen();
-                return;
+
             }
             if (str.equals("worker")) {
                 workerScreen();
-                return;
+
             }
-            if (str.equals("none"))
-                System.out.println("try again! **num "+i+" (at the third try the program will close!)");
+            if (str.equals("none")) {
+                System.out.println("try again");
+            }
         }
-        System.out.println("you should remember your password for the next time...");
+
     }
 
     public void workerScreen()
@@ -46,7 +47,7 @@ public class UserInterface implements Runnable {
         System.out.println("5. selling");
         System.out.println("6. watch last purchase");
         System.out.println("7. watch my monthly salary");
-        System.out.println("Any other number to exit");
+        System.out.println("Any other number to logout");
         int temp=s.nextInt();
             switch (temp) {
                 case 1:
@@ -71,7 +72,8 @@ public class UserInterface implements Runnable {
                     viewFunc.watchMonthlySalary();
                     break;
                 default:
-                    System.out.println("***exit***)");
+                    System.out.println("** logout **");
+                    System.out.println("");
                     return;
             }
         }
@@ -98,7 +100,7 @@ public class UserInterface implements Runnable {
             System.out.println("10. add new shoe/pants/shirt");
             System.out.println("11. Change Hourly Salary");
             System.out.println("12. add Worker");
-            System.out.println("Any other number to exit");
+            System.out.println("Any other number to logout");
             int temp=s.nextInt();
             switch (temp) {
                 case 1:
@@ -138,7 +140,8 @@ public class UserInterface implements Runnable {
                     viewFunc.addWorker();
                     break;
                 default:
-                    System.out.println("***exit***");
+                    System.out.println("** logout **");
+                    System.out.println("");
                     return;
             }
         }

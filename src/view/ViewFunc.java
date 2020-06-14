@@ -28,6 +28,7 @@ public class ViewFunc{
     }
 
     public String login(){
+        System.out.println("Login");
         Scanner s = new Scanner(System.in);
         System.out.println("enter your id: ");
         int id = s.nextInt();
