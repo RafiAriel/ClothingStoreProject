@@ -78,12 +78,19 @@ public class ItemModel {
     }
 
     public void addPants(Pants pants) {
-
+        if (pants.getItemId() < 0 || pants.getSize() < 0)
+        {
+            throw new IllegalArgumentException("id or size must not be negative");
+        }
+        if (isItemExists(pants.getItemId(), pants.getSize()))
+        {
+            throw new IllegalArgumentException("id and size exist");
+        }
         if (!isItemExists(pants.getItemId(), pants.getSize())) {
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
                 String INSERT_USERS_SQL = "INSERT INTO items" + "  (itemid, color, price, type, size, brand, gender, drawstringcolor, pantstype, shirtstype, basestock, currentStock) VALUES " +
                         " (?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
 
@@ -125,6 +132,15 @@ public class ItemModel {
     }
 
     public void addShoe(Shoe shoe) {
+        if (shoe.getItemId() < 0 || shoe.getSize() < 0)
+        {
+            throw new IllegalArgumentException("id or size must not be negative");
+        }
+        if (isItemExists(shoe.getItemId(), shoe.getSize()))
+        {
+            throw new IllegalArgumentException("id and size exist");
+        }
+
         if (!isItemExists(shoe.getItemId(), shoe.getSize())) {
             Connection connection = null;
             try {
@@ -169,7 +185,14 @@ public class ItemModel {
     }
 
     public void addShirt(Shirt shirt) {
-
+        if (shirt.getItemId() < 0 || shirt.getSize() < 0)
+        {
+            throw new IllegalArgumentException("id or size must not be negative");
+        }
+        if (isItemExists(shirt.getItemId(), shirt.getSize()))
+        {
+            throw new IllegalArgumentException("id and size exist");
+        }
         if (!isItemExists(shirt.getItemId(), shirt.getSize())) {
             Connection connection = null;
             try {
