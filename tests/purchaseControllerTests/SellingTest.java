@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import javax.management.MBeanAttributeInfo;
 import java.util.ArrayList;
 
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class SellingTest {
@@ -91,7 +93,7 @@ public class SellingTest {
     }
 
     @Test
-    public void failTest()
+    public void failSellingTest()
     {
         try {
             Item MOCK_ITEM = new Shoe("blue", "nabibas", "men", "shoe", 300, 40, 200, 50, 1,"bermuda");
@@ -107,6 +109,19 @@ public class SellingTest {
             Assertions.assertEquals("the price or shoppingRating must not be negative", e.getMessage());
 
         }
+    }
+
+
+    @Test
+    public void failSellingReturnTest()
+    {
+        Item MOCK_ITEM = new Shoe("blue", "nabibas", "men", "shoe", 300, 40, 200, 50, 1,"bermuda");
+        ArrayList<Item> MOCK_LIST = new ArrayList<Item>();
+        MOCK_LIST.add(MOCK_ITEM);
+
+        Purchase p = new Purchase(MOCK_MEMBER, MOCK_LIST, MOCK_POSITIVE, MOCK_POSITIVE);
+        int i = purchaseController.selling(p);
+        assertTrue(i > -2);
     }
 
 }

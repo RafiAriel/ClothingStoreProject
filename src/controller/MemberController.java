@@ -3,6 +3,8 @@ import view.*;
 import model.*;
 import model.entities.Member;
 
+import java.util.ArrayList;
+
 
 public class MemberController {
 
@@ -18,9 +20,9 @@ public class MemberController {
        return model.addClubMember(m);
     }
 
-    public void deleteClubMember(int id)
+    public boolean deleteClubMember(int id)
     {
-        model.deleteClubMember(id);
+       return model.deleteClubMember(id);
     }
 
     public boolean isExistsClubMember(int id)
@@ -30,9 +32,9 @@ public class MemberController {
 
     public Member searchMember(int id){return model.searchMember(id);}
 
-    public void birthdayPointAuto()
+    public ArrayList<Member> birthdayPointAuto()
     {
-        model.birthdayPointAuto();
+        return model.birthdayPointAuto();
     }
 
     public void updateMembersPoints(int price, Member m)

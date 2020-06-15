@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AddPantsTest {
@@ -17,7 +18,8 @@ public class AddPantsTest {
     private final static int MOCK_POSITIVE = 1;
     private final static int MOCK_ID_EXIST = 3;
     private final static int MOCK_SIZE_EXIST = 30;
-
+    private final static int MOCK_ID_NOT_EXIST = 152;
+    private final static int MOCK_SIZE_NOT_EXIST = 56;
 
     @BeforeEach
     public void setUp()
@@ -63,5 +65,14 @@ public class AddPantsTest {
 
         }
 
+    }
+
+
+    @Test
+    public  void failAddPantsSucceedTest()
+    {
+        Pants i = new Pants("blue", "niki", "men", "pants", 200, MOCK_SIZE_NOT_EXIST, 200, 500, MOCK_ID_NOT_EXIST, "bermuda");
+        boolean a = itemController.addPants(i);
+        assertTrue(a);
     }
 }

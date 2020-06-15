@@ -17,7 +17,7 @@ public class PurchaseController {
         return model.lastPurchase(memId);
     }
 
-    public String selling(Purchase pur)
+    public int selling(Purchase pur)
     {
         return model.selling(pur);
     }

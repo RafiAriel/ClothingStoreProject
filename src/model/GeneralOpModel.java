@@ -21,7 +21,6 @@ public class GeneralOpModel {
             e.printStackTrace();
         }
         return sum;
-
     }
 
     public String Login(int id, String password) {

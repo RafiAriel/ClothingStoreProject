@@ -18,7 +18,11 @@ public class ViewFunc{
 
     public void birthDayAuto()
     {
-        memberController.birthdayPointAuto();
+        ArrayList<Member> temp = memberController.birthdayPointAuto();
+        for(int i=0;i<temp.size();i++)
+        {
+            System.out.println("System message: Member - "+temp.get(i).getName()+" Id - "+temp.get(i).getId()+" has a birthday ant he gets 250 points!");
+        }
     }
 
     public void autoFunc()
@@ -112,7 +116,11 @@ public class ViewFunc{
         Scanner s = new Scanner(System.in);
         System.out.println("enter member id: ");
         int id = s.nextInt();
-        memberController.deleteClubMember(id);
+        if(memberController.deleteClubMember(id)){
+            System.out.println("Deletion was successfully");
+        }else{
+            System.out.println("Unable to delete, no such user in the system");
+        }
     }
 
     public void isMemberExists() {
@@ -158,7 +166,16 @@ public class ViewFunc{
         int shopRate = s.nextInt();
 
         Purchase p = new Purchase(m,items, price,shopRate);
-        System.out.println(purchaseController.selling(p));
+        int pr = purchaseController.selling(p);
+        if(pr<0)
+        {
+            System.out.println("stock is low for your Purchase - Purchase faild!");
+        }
+        else
+        {
+            System.out.println("The price is: " + pr);
+            System.out.println("Purchase succeeded!");
+        }
     }
 
     public void watchLastPurchase() {
@@ -203,7 +220,13 @@ public class ViewFunc{
         Scanner s = new Scanner(System.in);
         System.out.println("enter your id: ");
         int id = s.nextInt();
-        System.out.println(workerController.watchMonthlySalary(id));
+        int temp = workerController.watchMonthlySalary(id);
+        if(temp<0)
+        {
+            System.out.println("You are not registered!");
+        }else {
+            System.out.println("Your monthly salary is: " + temp +"\n");
+        }
     }
 
     public void averageSellingRate() {
@@ -263,26 +286,32 @@ public class ViewFunc{
         System.out.println("enter base Stock:");
         int baseStock = s.nextInt();
 
+        boolean i=false;
         switch (type) {
             case "shirt":
                 System.out.println("enter shirt Type:");
                 String shirtType = s.next();
                 Shirt shirt = new Shirt(color,brand, gender, type, price, size, currStock, baseStock, id,shirtType );
-                itemController.addShirt(shirt);
+                i= itemController.addShirt(shirt);
                 break;
             case "pants":
                 System.out.println("enter pants Type:");
                 String pantsType = s.next();
                 Pants pants = new Pants(color,brand,gender,type,price,size,currStock,baseStock,id,pantsType);
-                itemController.addPants(pants);
+                i= itemController.addPants(pants);
                 break;
             case "shoe":
                 System.out.println("enter drawstring Color:");
                 String drawstringColor = s.next();
                 Shoe shoe = new Shoe(color,brand,gender,type,price,size,currStock,baseStock,id,drawstringColor);
-                itemController.addShoe(shoe);
+                i= itemController.addShoe(shoe);
                 break;
         }
+        if(i)
+            System.out.println("action succeeded!");
+        else
+            System.out.println("the item is already exists!");
+
     }
 
     public void changeHourlySalary() {
@@ -291,7 +320,9 @@ public class ViewFunc{
         int id = s.nextInt();
         System.out.println("enter the new hourly salary of the worker.");
         int salary = s.nextInt();
-        System.out.println(managerController.changeHourlySalary(id,salary));
+        if(managerController.changeHourlySalary(id,salary))
+            System.out.println("update successfully passed!");
+        else System.out.println("worker are not registered! - update failed!\n");
     }
 
     public void addWorker(){
@@ -312,7 +343,14 @@ public class ViewFunc{
         String pass = s.next();
 
         Worker w = new Worker(name, birthday, id, hourlySalary,numHourMonth,jobType,pass );
-        managerController.addWorker(w);
+        if(managerController.addWorker(w))
+        {
+            System.out.println("action succeeded!");
+        }
+        else
+        {
+            System.out.println("the worker is already exists!");
+        }
     }
 
 }

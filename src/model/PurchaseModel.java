@@ -34,7 +34,7 @@ public class PurchaseModel {
         return null;
     }
 
-    public String selling(Purchase pur) {
+    public int selling(Purchase pur) {
         if(pur.getClubMember().getName().equals("valueless") || pur.getClubMember().getDateOfBirth().equals("-1") || pur.getClubMember().getId() < 0 || pur.getClubMember().getPointsGained() < 0)
         {
             throw new IllegalArgumentException("name or id or pointsgaind or dateofbirth must not be null or wrong");
@@ -52,10 +52,9 @@ public class PurchaseModel {
         ItemModel itemModel = new ItemModel();
 
         if(!updateStockMinus(pur))
-            return "Purchase faild!";
+            return -1;
 
         int price = newPrice(pur.getPrice(),  pur.getClubMember());
-        System.out.println("The price is: " + price);
         memMod.updateMembersPoints((int) (0.1*price), pur.getClubMember());
         int i;
         String strDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
@@ -80,8 +79,7 @@ public class PurchaseModel {
                 e.printStackTrace();
             }
         }
-        return "Purchase succeeded!";
-
+        return price;
     }
 
     public int newPrice(int price, Member m) {
@@ -117,7 +115,6 @@ public class PurchaseModel {
                 int currStock = rs.getInt("currentStock");
                 if(currStock<0)
                 {
-                    System.out.println("item number:"+pur.getItem().get(i).getItemId()+" is out of stock!!");
                     for(j=i;j>=0;j--)
                     {
                         String strUpdate2 = "update items set currentStock = currentStock +1 where itemid =" + pur.getItem().get(j).getItemId();

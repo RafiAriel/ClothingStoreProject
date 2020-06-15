@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AddShirtTest {
@@ -17,7 +18,7 @@ public class AddShirtTest {
     private final static int MOCK_POSITIVE = 1;
     private final static int MOCK_ID_EXIST = 5;
     private final static int MOCK_SIZE_EXIST = 20;
-
+    private final static int MOCK_ID_NOT_EXIST = 5;
 
     @BeforeEach
     public void setUp()
@@ -64,6 +65,18 @@ public class AddShirtTest {
         }
 
     }
+
+
+
+
+    @Test
+    public  void failAddShirtSucceedTest()
+    {
+        Shirt i = new Shirt("blue", "niki", "men", "pants", 200, MOCK_POSITIVE, 200, 500, MOCK_ID_NOT_EXIST, "bermuda");
+        boolean a = itemController.addShirt(i);
+        assertTrue(a);
+    }
+
 }
 
 

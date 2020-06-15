@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class WorkerModel {
 
-    public void addWorker(Worker w) {
+    public boolean addWorker(Worker w) {
         if (isExistsWorker(w.getId()) == false) {
             Connection connection = null;
             try {
@@ -40,18 +40,16 @@ public class WorkerModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println("action succeeded!");
+                return true;
             }
-        } else {
-            System.out.println("the worker is already exists!");
         }
-
+        return false;
     }
 
-    public String watchMonthlySalary(int workerId) {
+    public int watchMonthlySalary(int workerId) {
 
         if (!isExistsWorker(workerId)) {
-            return "You are not registered!\n";
+            return -1;
         }
 
         int i;
@@ -60,13 +58,13 @@ public class WorkerModel {
             workers = StoreModel.getInstance().getWorkers();
             for (i = 0; i < workers.size(); i++) {
                 if (workerId == (workers.get(i).getId())) {
-                    return "Your monthly salary is: " + workers.get(i).getHourlySalary() * workers.get(i).getNumHourMonth() + "\n";
+                    return workers.get(i).getHourlySalary() * workers.get(i).getNumHourMonth();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "You are not registered!\n";
+        return -1;
     }
 
     public boolean isExistsWorker(int workerId) {
