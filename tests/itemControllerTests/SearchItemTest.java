@@ -26,7 +26,7 @@ public class SearchItemTest {
             itemController.searchItem(MOCK_NEGATIVE,MOCK_SIZE_EXIST);
             fail("The search succeed when should failed");
         } catch (IllegalArgumentException e) {
-            Assertions.assertEquals("id must be positive", e.getMessage());
+            Assertions.assertEquals("id or size must be a positive number", e.getMessage());
 
         }
 
@@ -38,7 +38,7 @@ public class SearchItemTest {
             itemController.searchItem(MOCK_ID_EXIST,MOCK_NEGATIVE);
             fail("The search succeed when should failed");
         } catch (IllegalArgumentException e) {
-            Assertions.assertEquals("size must be positive", e.getMessage());
+            Assertions.assertEquals("id or size must be a positive number", e.getMessage());
 
         }
 
@@ -48,8 +48,9 @@ public class SearchItemTest {
     public void SearchItemFoundedTest()
     {
         Item item = itemController.searchItem(MOCK_ID_EXIST,MOCK_SIZE_EXIST);
-        assertTrue(item.getItemId() == MOCK_ID_EXIST);
-        assertTrue(item.getSize() == MOCK_SIZE_EXIST);
+        Assertions.assertNotNull(item);
+        Assertions.assertEquals(item.getItemId(), MOCK_ID_EXIST);
+        Assertions.assertEquals(item.getSize(), MOCK_SIZE_EXIST);
 
     }
 
@@ -57,6 +58,6 @@ public class SearchItemTest {
     public void SearchItemNotFoundSucceedTest()
     {
         Item item = itemController.searchItem(MOCK_ID_NOT_EXIST_EXIST,MOCK_SIZE_EXIST);
-        assertTrue(item == null);
+        Assertions.assertNull(item == null);
     }
 }
