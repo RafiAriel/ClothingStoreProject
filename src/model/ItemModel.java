@@ -10,7 +10,12 @@ import java.util.ArrayList;
 
 public class ItemModel {
 
-    public Item searchItem(int id, int size) { //if exist and in stock
+    public Item searchItem(int id, int size) {
+        if(id <= 0 || size <= 0)
+        {
+            throw new IllegalArgumentException("id or size must be a positive number");
+        }
+
         int i;
         ArrayList<Item> items = new ArrayList<>();
         try {
@@ -23,8 +28,7 @@ public class ItemModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Item NONE = new Shirt();
-        return NONE;
+        return null;
     }
 
     public boolean isItemExists(int id, int size) {
@@ -45,7 +49,7 @@ public class ItemModel {
 
     public Item bestSellingProduct() {
         int i, max = 0;
-        Item temp = new Shirt();
+        Item temp = null;
         ArrayList<Item> items = new ArrayList<>();
         try {
             items = StoreModel.getInstance().getItems();
