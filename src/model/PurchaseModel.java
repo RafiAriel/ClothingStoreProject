@@ -104,7 +104,7 @@ public class PurchaseModel {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
 
             Statement stmt = connection.createStatement();
             for(i=0;i<pur.getItem().size();i++) {

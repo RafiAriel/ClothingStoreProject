@@ -16,7 +16,7 @@ public class AutoFuncController {
 
     public void checkCurrentStock()
     {
-         model.runCheckCurrentStock();
+        model.runCheckCurrentStock();
     }
 
 }

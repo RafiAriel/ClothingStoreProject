@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddClubMemberTest {
     MemberController memberController;
@@ -24,7 +24,7 @@ public class AddClubMemberTest {
     private final static Member MOCK_MEMBER_WITHOUTIDOTHER = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_ZERO, MOCK_POINTSGAINED);
     private final static Member MOCK_MEMBER_WITHOUTPOINTSGAINED = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_ZERO, MOCK_NEGATIVE);
     private final static Member MOCK_MEMBER_EXIST = new Member("Yuval", "30/2/1999",1, 4534);
-
+    private final static Member MOCK_MEMBER_NOT_EXIST = new Member("Dani", "30/2/1999",49, 4534);
 
     @BeforeEach
     public void setUp()
@@ -112,16 +112,23 @@ public class AddClubMemberTest {
                 memberController.addClubMember(MOCK_MEMBER_EXIST);
                 fail("The addition succeed when should failed");
             }
-            catch (IllegalArgumentException e)
-            {
+            catch (IllegalArgumentException e) {
                 Assertions.assertEquals("the member is exist", e.getMessage());
 
             }
 
 
+
     }
 
 
+    @Test
+    public void failAddClubMemberSucceedTest()
+{
+    boolean checkTrue = memberController.addClubMember(MOCK_MEMBER_NOT_EXIST);
+    assertTrue(checkTrue);
+
+}
 
 
 
