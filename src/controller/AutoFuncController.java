@@ -1,6 +1,9 @@
 package controller;
+import model.entities.Item;
 import view.*;
 import model.*;
+
+import java.util.ArrayList;
 
 
 public class AutoFuncController {
@@ -13,7 +16,7 @@ public class AutoFuncController {
 
     public void checkCurrentStock()
     {
-        model.runCheckCurrentStock();
+         model.runCheckCurrentStock();
     }
 
 }

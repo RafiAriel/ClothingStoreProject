@@ -11,11 +11,11 @@ public class WorkerController {
         this.model = new WorkerModel();
     }
 
-    public void addWorker(Worker w) {
-        model.addWorker(w);
+    public boolean addWorker(Worker w) {
+        return model.addWorker(w);
     }
 
-    public String watchMonthlySalary(int workerId)
+    public int watchMonthlySalary(int workerId)
     {
         return model.watchMonthlySalary(workerId);
     }

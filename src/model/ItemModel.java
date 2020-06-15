@@ -62,22 +62,7 @@ public class ItemModel {
         return temp;
     }
 
-   public boolean isAllItemsExist(Purchase pur) {
-        int i;
-        try {
-            for (i = 0; i < pur.getItem().size(); i++) {
-                if(!isItemExists(pur.getItem().get(i).getItemId(),pur.getItem().get(i).getSize())) {
-                    System.out.println("item:" +pur.getItem().get(i).getItemId()+" is not exist!");
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    public void addPants(Pants pants) {
+    public boolean addPants(Pants pants) {
         if (pants.getItemId() < 0 || pants.getSize() < 0)
         {
             throw new IllegalArgumentException("id or size must not be negative");
@@ -124,14 +109,12 @@ public class ItemModel {
                 }
 
             }
-            System.out.println("action succeeded!");
-        } else {
-            System.out.println("the item is already exists!");
+            return true;
         }
-
+        return false;
     }
 
-    public void addShoe(Shoe shoe) {
+    public boolean addShoe(Shoe shoe) {
         if (shoe.getItemId() < 0 || shoe.getSize() < 0)
         {
             throw new IllegalArgumentException("id or size must not be negative");
@@ -177,14 +160,13 @@ public class ItemModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println("action succeeded!");
+                return true;
             }
-        } else {
-            System.out.println("the item is already exists!");
         }
+        return false;
     }
 
-    public void addShirt(Shirt shirt) {
+    public boolean addShirt(Shirt shirt) {
         if (shirt.getItemId() < 0 || shirt.getSize() < 0)
         {
             throw new IllegalArgumentException("id or size must not be negative");
@@ -230,11 +212,10 @@ public class ItemModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-             System.out.println("action succeeded!");
+                return true;
             }
-        } else {
-            System.out.println("the item is already exists!");
         }
+        return false;
     }
 
 }

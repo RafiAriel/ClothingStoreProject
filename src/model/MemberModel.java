@@ -18,13 +18,13 @@ public class MemberModel {
         }
 
         if (isExistsClubMember(m.getId()) == true) {
-            throw new IllegalArgumentException("the member is exist");
+            throw new IllegalArgumentException("the member is already exist");
         }
 
             Connection connection = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 String INSERT_USERS_SQL = "INSERT INTO clubmembers" + "  (name, id, dateofbirth, pointgained) VALUES " +
                         " (?, ?, ?, ?);";
 
@@ -54,7 +54,7 @@ public class MemberModel {
 
     }
 
-    public void deleteClubMember(int id) {
+    public boolean deleteClubMember(int id) {
         Connection connection = null;
         String idNumber = String.valueOf(id);
         String DELETE_USERS_SQL = "delete from clubmembers where id = " + idNumber + ";";
@@ -62,18 +62,15 @@ public class MemberModel {
             try {
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(DELETE_USERS_SQL);
-                System.out.println("Deletion was successfully");
-
+                return true;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("action succeeded!");
-        } else {
-            System.out.println("Unable to delete, no such user in the system");
         }
+            return false;
     }
 
     public boolean isExistsClubMember(int id) {
@@ -109,10 +106,12 @@ public class MemberModel {
         return null;
     }
 
-    public void birthdayPointAuto() {
+    public ArrayList<Member> birthdayPointAuto() {
         int i;
         ArrayList<Member> clubMembers;
+        ArrayList<Member> birthdayMembers;
         try {
+            birthdayMembers = new ArrayList<Member>();
             clubMembers = new ArrayList<Member>();
             clubMembers = StoreModel.getInstance().getClubMembers();
             Date date = new Date();
@@ -122,19 +121,18 @@ public class MemberModel {
             for (i = 0; i < clubMembers.size(); i++) {
                 String[] dateClubMember;
                 dateClubMember = clubMembers.get(i).getDateOfBirth().split("/");
-                    int dayMember = Integer.parseInt(dateClubMember[0]);
-                    int monthMember = Integer.parseInt(dateClubMember[1]);
-                    if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember)) {
-                        updateMembersPoints(250, clubMembers.get(i));
-                        System.out.println("System message: 250 credits added to club member " + clubMembers.get(i).getName() + ", id: " + clubMembers.get(i).getId());
-                    }
-
+                int dayMember = Integer.parseInt(dateClubMember[0]);
+                int monthMember = Integer.parseInt(dateClubMember[1]);
+                if (Integer.valueOf(month) == Integer.valueOf(monthMember) && Integer.valueOf(day) == Integer.valueOf(dayMember)) {
+                    updateMembersPoints(250, clubMembers.get(i));
+                    birthdayMembers.add( clubMembers.get(i));
                 }
-
+            }
+            return birthdayMembers;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return null;
     }
 
     public void updateMembersPoints(int price, Member m) {
@@ -142,7 +140,7 @@ public class MemberModel {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "ProjectClothingStore");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
 
             Statement stmt = connection.createStatement();
             String strUpdate = "update clubmembers set pointgained = pointgained +" + price + " where id =" + m.getId();

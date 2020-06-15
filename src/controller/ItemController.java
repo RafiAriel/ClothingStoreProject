@@ -19,22 +19,19 @@ public class ItemController {
 
     public Item bestSellingProduct() { return model.bestSellingProduct(); }
 
-    public boolean isAllItemsExist(Purchase pur) {
-        return model.isAllItemsExist(pur);
-    }
 
     public boolean isItemExists(int id, int size){return model.isItemExists(id,size);}
 
-    public void addPants(Pants pants) {
-        model.addPants(pants);
+    public boolean addPants(Pants pants) {
+        return model.addPants(pants);
     }
 
-    public void addShoe(Shoe shoe) {
-        model.addShoe(shoe);
+    public boolean addShoe(Shoe shoe) {
+        return model.addShoe(shoe);
     }
 
-    public void addShirt(Shirt shirt) {
-        model.addShirt(shirt);
+    public boolean addShirt(Shirt shirt) {
+        return model.addShirt(shirt);
     }
 
 }

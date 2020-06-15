@@ -2,11 +2,11 @@ package model;
 
 import java.sql.*;
 
-public class ManagerModel extends  WorkerModel {
+public class ManagerModel extends WorkerModel {
 
-    public String changeHourlySalary(int workerId, int newSalary) {
+    public boolean changeHourlySalary(int workerId, int newSalary) {
         if (!isExistsWorker(workerId)) {
-            return "worker are not registered!\n";
+            return false;
         }
 
         Connection connection = null;
@@ -18,7 +18,7 @@ public class ManagerModel extends  WorkerModel {
             Statement stmt = connection.createStatement();
             String strUpdate = "update workers set hourlysalary = " + newSalary + " where id =" + workerId;
             int countUpdated = stmt.executeUpdate(strUpdate);
-            return "update successfully passed!";
+            return true;
         } catch (IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -28,7 +28,7 @@ public class ManagerModel extends  WorkerModel {
                 e.printStackTrace();
             }
         }
-        return "update failed!";
+        return false;
     }
 
 
