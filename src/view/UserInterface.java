@@ -42,7 +42,7 @@ public class UserInterface implements Runnable {
 
     public void workerScreen()
     {
-        viewFunc.autoFunc();
+        viewFunc.runCheckCurrentStock();
         viewFunc.birthDayAuto();
         Scanner s = new Scanner(System.in);
         while(true) {
@@ -90,7 +90,7 @@ public class UserInterface implements Runnable {
 
     public void managerScreen()
     {
-        viewFunc.autoFunc();
+        viewFunc.runCheckCurrentStock();
         viewFunc.birthDayAuto();
         Scanner s = new Scanner(System.in);
         while(true) {

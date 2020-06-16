@@ -14,9 +14,9 @@ public class AutoFuncController {
         this.model = new AutoFuncModel();
     }
 
-    public void checkCurrentStock()
+    public ArrayList<String> checkCurrentStock()
     {
-        model.runCheckCurrentStock();
+        return model.checkCurrentStock();
     }
 
 }

@@ -2,6 +2,10 @@ package itemControllerTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import controller.ItemController;
+import model.entities.*;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class SearchItemTest {
     ItemController itemController;
@@ -39,9 +43,7 @@ public class SearchItemTest {
             fail("The search succeed when should failed");
         } catch (IllegalArgumentException e) {
             Assertions.assertEquals("id or size must be a positive number", e.getMessage());
-
         }
-
     }
 
     @Test
@@ -57,7 +59,7 @@ public class SearchItemTest {
     @Test
     public void SearchItemNotFoundSucceedTest()
     {
-        Item item = itemController.searchItem(MOCK_ID_NOT_EXIST_EXIST,MOCK_SIZE_EXIST);
+        Item item = itemController.searchItem(MOCK_ID_NOT_EXIST,MOCK_SIZE_EXIST);
         Assertions.assertNull(item == null);
     }
 }

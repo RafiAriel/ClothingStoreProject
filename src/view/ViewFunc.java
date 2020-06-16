@@ -1,10 +1,10 @@
 package view;
 
-import controller.*;
 import model.entities.*;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import controller.*;
+import java.io.IOException;
 
 public class ViewFunc{
     private AutoFuncController autoFuncController;
@@ -63,7 +63,7 @@ public class ViewFunc{
         System.out.println("enter the size: ");
         size = s.nextInt();
         Item item = itemController.searchItem(id, size);
-        if(item == null)
+        if(!itemController.isItemExists(id,size))
             System.out.println("the product does not exist");
         else if (item.getItemId()<0)
             System.out.println("the product doesn't in stock!");
@@ -144,15 +144,15 @@ public class ViewFunc{
             int id = s.nextInt();
             System.out.println("enter it's size");
             int size = s.nextInt();
-            Item item = itemController.searchItem(id, size);
-            if(item != null) {
-                items.add(item);
-                items.get(i).setItemId(id);
-                price += item.getPrice();
-            } else {
+            if(!itemController.isItemExists(id,size))
+            {
                 System.out.println("item:" +id+" is not exist!");
                 return;
             }
+            Item item = itemController.searchItem(id, size);
+            items.add(item);
+            items.get(i).setItemId(id);
+            price += item.getPrice();
         }
         System.out.println("enter member id:");
         int memId = s.nextInt();
@@ -236,33 +236,30 @@ public class ViewFunc{
     public void bestSellingProduct() {
         System.out.println("the best selling product is:");
         Item item = itemController.bestSellingProduct();
-        if(item != null) {
-            System.out.println("the id:" + item.getItemId());
-            System.out.println("the color:" + item.getColor());
-            System.out.println("the brand:" + item.getBrand());
-            System.out.println("the gender:" + item.getGender());
-            System.out.println("the type:" + item.getType());
-            System.out.println("the price:" + item.getPrice());
-            System.out.println("the size:" + item.getSize());
-            System.out.println("current Stock:" + item.getCurrentStock());
-            System.out.println("base Stock:" + item.getBaseStock());
-            switch (item.getType()) {
-                case "shirt":
-                    Shirt shirt = (Shirt) item;
-                    System.out.println("shirt Type:" + shirt.getShirtType());
-                    break;
-                case "pants":
-                    Pants pants = (Pants) item;
-                    System.out.println("pants Type:" + pants.getPantsType());
-                    break;
-                case "shoe":
-                    Shoe shoe = (Shoe) item;
-                    System.out.println("drawstring Color:" + shoe.getDrawstringColor());
-                    break;
-            }
-        } else {
-            System.out.println("there is no best selling item");
+        System.out.println("the id:"+item.getItemId());
+        System.out.println("the color:"+item.getColor());
+        System.out.println("the brand:"+item.getBrand());
+        System.out.println("the gender:"+item.getGender());
+        System.out.println("the type:"+item.getType());
+        System.out.println("the price:"+item.getPrice());
+        System.out.println("the size:"+item.getSize());
+        System.out.println("current Stock:"+item.getCurrentStock());
+        System.out.println("base Stock:"+item.getBaseStock());
+        switch (item.getType()) {
+            case "shirt":
+                Shirt shirt = (Shirt) item;
+                System.out.println("shirt Type:" + shirt.getShirtType());
+                break;
+            case "pants":
+                Pants pants = (Pants) item;
+                System.out.println("pants Type:" + pants.getPantsType());
+                break;
+            case "shoe":
+                Shoe shoe = (Shoe) item;
+                System.out.println("drawstring Color:" + shoe.getDrawstringColor());
+                break;
         }
+
     }
 
     public void addItem(){
@@ -351,6 +348,22 @@ public class ViewFunc{
         {
             System.out.println("the worker is already exists!");
         }
+    }
+
+    public void runCheckCurrentStock() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                ArrayList<String> itemsLow = new ArrayList<String>();
+               itemsLow = autoFuncController.checkCurrentStock();
+              System.out.println(itemsLow.toString());
+
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(task, new Date(), 300000);
+
     }
 
 }
