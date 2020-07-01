@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class ItemModel {
 
     public Item searchItem(int id, int size) {
-        if(id <= 0 || size <= 0)
+       if (id < 0 || size < 0)
         {
-            throw new IllegalArgumentException("id or size must be a positive number");
+            throw new IllegalArgumentException("id or size must not be negative");
         }
 
         int i;
