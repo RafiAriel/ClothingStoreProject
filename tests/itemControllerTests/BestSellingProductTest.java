@@ -1,5 +1,6 @@
 package itemControllerTests;
 import controller.ItemController;
+import model.entities.Item;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ public class BestSellingProductTest {
 
     @BeforeEach
     public void setUp() {itemController = new ItemController();}
-//cxvds,vsfvkmsdkc
+
     @Test
     public void BestSellingProductFoundedTest()
     {
@@ -18,11 +19,7 @@ public class BestSellingProductTest {
         Assertions.assertNotNull(item);
     }
 
-    @Test
-    public void BestSellingProductNotFoundSucceedTest()
-    {
-        Item item = itemController.bestSellingProduct();
-        Assertions.assertNull(item == null);
-    }
+
+
 
 }
