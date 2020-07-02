@@ -32,7 +32,7 @@ public class UserInterface implements Runnable {
                     System.out.println("the program closes");
                     return;
                 }
-                System.out.println("username or password are - try again!");
+                System.out.println("username or password are not correct - try again!");
                 System.out.println("mistake number "+i+"/3");
                 i++;
             }
