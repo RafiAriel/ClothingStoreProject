@@ -56,22 +56,22 @@ public class MemberModel {
 
     public boolean deleteClubMember(int id) {
         Connection connection = null;
-        String idNumber = String.valueOf(id);
-        String DELETE_USERS_SQL = "delete from clubmembers where id = " + idNumber + ";";
+    String idNumber = String.valueOf(id);
+    String DELETE_USERS_SQL = "delete from clubmembers where id = " + idNumber + ";";
         if (isExistsClubMember(id) == true) {
-            try {
+        try {
 
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
-                Statement statement = connection.createStatement();
-                statement.executeUpdate(DELETE_USERS_SQL);
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(DELETE_USERS_SQL);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-            return false;
     }
+            return false;
+}
 
     public boolean isExistsClubMember(int id) {
         int i;

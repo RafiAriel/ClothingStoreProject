@@ -113,12 +113,9 @@ public class AddClubMemberTest {
                 fail("The addition succeed when should failed");
             }
             catch (IllegalArgumentException e) {
-                Assertions.assertEquals("the member is exist", e.getMessage());
+                Assertions.assertEquals("the member is already exist", e.getMessage());
 
             }
-
-
-
     }
 
 
@@ -127,6 +124,7 @@ public class AddClubMemberTest {
 {
     boolean checkTrue = memberController.addClubMember(MOCK_MEMBER_NOT_EXIST);
     assertTrue(checkTrue);
+    memberController.deleteClubMember(MOCK_MEMBER_NOT_EXIST.getId());
 
 }
 

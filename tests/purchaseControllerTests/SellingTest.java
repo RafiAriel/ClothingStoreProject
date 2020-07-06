@@ -21,15 +21,11 @@ public class SellingTest {
     private final static int MOCK_ZERO = 0;
     private final static int MOCK_POSITIVE = 1;
     private final static int MOCK_ID_NOT_EXIST = 9999;
-    private final static String MOCK_NAME = "Yuval";
+    private final static String MOCK_NAME = "yuval";
     private final static String MOCK_DATEOFBIRTH = "31/3/1990";
     private final static int MOCK_POINTSGAINED = 5550;
     private final static Member MOCK_EMPTY_MEMBER = new Member();
     private final static Member MOCK_MEMBER = new Member(MOCK_NAME, MOCK_DATEOFBIRTH, MOCK_POSITIVE, MOCK_POINTSGAINED);
-
-/*
-
- */
 
     @BeforeEach
     public void setUp()

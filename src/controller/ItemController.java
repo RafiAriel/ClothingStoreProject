@@ -34,4 +34,9 @@ public class ItemController {
         return model.addShirt(shirt);
     }
 
+    public boolean deleteItem(int id, int size)
+    {
+        return model.deleteItem(id,size);
+    }
+
 }

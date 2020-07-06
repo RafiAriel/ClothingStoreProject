@@ -69,14 +69,13 @@ public class AddShoeTest {
     }
 
 
-
-
     @Test
     public  void failAddShirtSucceedTest()
     {
         Shoe i = new Shoe("blue", "niki", "men", "pants", 200, MOCK_POSITIVE, 200, 500, MOCK_ID_NOT_EXIST, "bermuda");
         boolean a = itemController.addShoe(i);
         assertTrue(a);
+        itemController.deleteItem(MOCK_ID_NOT_EXIST,MOCK_POSITIVE);
     }
 }
 

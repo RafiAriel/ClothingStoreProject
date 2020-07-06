@@ -2,10 +2,7 @@ package model;
 
 import model.entities.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ItemModel {
@@ -217,6 +214,26 @@ public class ItemModel {
                     e.printStackTrace();
                 }
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteItem(int id, int size) {
+        Connection connection = null;
+        String idNumber = String.valueOf(id);
+        String sizeNumber = String.valueOf(size);
+        String DELETE_USERS_SQL = "delete from items where itemid = " + idNumber + " and size = "+ sizeNumber+ ";";
+        if (isItemExists(id,size) == true) {
+            try {
+
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "6560634i");
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(DELETE_USERS_SQL);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return false;

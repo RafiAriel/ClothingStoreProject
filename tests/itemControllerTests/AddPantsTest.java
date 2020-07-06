@@ -37,7 +37,6 @@ public class AddPantsTest {
             Assertions.assertEquals("id or size must not be negative", e.getMessage());
 
         }
-
     }
 
     @Test
@@ -74,5 +73,6 @@ public class AddPantsTest {
         Pants i = new Pants("blue", "niki", "men", "pants", 200, MOCK_SIZE_NOT_EXIST, 200, 500, MOCK_ID_NOT_EXIST, "bermuda");
         boolean a = itemController.addPants(i);
         assertTrue(a);
+        itemController.deleteItem(MOCK_ID_NOT_EXIST,MOCK_SIZE_NOT_EXIST);
     }
 }
