@@ -56,7 +56,7 @@ public class AddShoeTest {
 
 
     @Test
-    public void failAddPantsTest() {
+    public void failAddShoeTest() {
         try {
             Pants i = new Pants("blue", "niki", "men", "pants", 200, MOCK_SIZE_EXIST, 200, 500, MOCK_ID_EXIST, "bermuda");
             itemController.addPants(i);
@@ -69,13 +69,14 @@ public class AddShoeTest {
     }
 
 
+
+
     @Test
-    public  void failAddShirtSucceedTest()
+    public  void failAddShoeSucceedTest()
     {
         Shoe i = new Shoe("blue", "niki", "men", "pants", 200, MOCK_POSITIVE, 200, 500, MOCK_ID_NOT_EXIST, "bermuda");
         boolean a = itemController.addShoe(i);
         assertTrue(a);
-        itemController.deleteItem(MOCK_ID_NOT_EXIST,MOCK_POSITIVE);
     }
 }
 
