@@ -74,7 +74,7 @@ public class AddShirtTest {
         Shirt i = new Shirt("blue", "niki", "men", "shirt", 200, MOCK_POSITIVE, 200, 500, MOCK_ID_NOT_EXIST, "bermuda");
         boolean a = itemController.addShirt(i);
         assertTrue(a);
-        itemController.deleteItem(MOCK_POSITIVE,MOCK_ID_NOT_EXIST);
+        itemController.deleteItem(MOCK_ID_NOT_EXIST,MOCK_POSITIVE);
     }
 
 }
