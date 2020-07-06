@@ -75,7 +75,7 @@ public class AddShoeTest {
         Shoe i = new Shoe("blue", "niki", "men", "shoe", 200, MOCK_POSITIVE, 200, 500, MOCK_ID_NOT_EXIST, "bermuda");
         boolean a = itemController.addShoe(i);
         assertTrue(a);
-        itemController.deleteItem(MOCK_POSITIVE,MOCK_SIZE_NOT_EXIST);
+        itemController.deleteItem(MOCK_ID_NOT_EXIST,MOCK_POSITIVE);
     }
 }
 
