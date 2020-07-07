@@ -23,7 +23,7 @@ public class AddClubMemberTest {
     private final static Member MOCK_MEMBER_WITHOUTID = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_NEGATIVE, MOCK_POINTSGAINED);
     private final static Member MOCK_MEMBER_WITHOUTIDOTHER = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_ZERO, MOCK_POINTSGAINED);
     private final static Member MOCK_MEMBER_WITHOUTPOINTSGAINED = new Member(MOCK_NAME, MOCK_DATEOFBIRTH,MOCK_ZERO, MOCK_NEGATIVE);
-    private final static Member MOCK_MEMBER_EXIST = new Member("Yuval", "30/2/1999",1, 4534);
+    private final static Member MOCK_MEMBER_EXIST = new Member("test", "4/3/1990",9999, 1111);
     private final static Member MOCK_MEMBER_NOT_EXIST = new Member("Dani", "30/2/1999",49, 4534);
 
     @BeforeEach
@@ -116,6 +116,9 @@ public class AddClubMemberTest {
                 Assertions.assertEquals("the member is already exist", e.getMessage());
 
             }
+
+
+
     }
 
 
@@ -125,7 +128,6 @@ public class AddClubMemberTest {
     boolean checkTrue = memberController.addClubMember(MOCK_MEMBER_NOT_EXIST);
     assertTrue(checkTrue);
     memberController.deleteClubMember(MOCK_MEMBER_NOT_EXIST.getId());
-
 }
 
 
